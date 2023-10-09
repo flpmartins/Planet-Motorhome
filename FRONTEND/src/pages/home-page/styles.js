@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
-  background-color: ${({ theme }) => theme.secondary};
+  background-color:#fff;
   display: flex;
   flex-direction: column;
   width: 100%;
@@ -15,7 +15,7 @@ export const Header = styled.div`
   margin: 0;
   padding: 0px;
   align-items: center;
-  box-shadow: 0px 0px 10px 5px rgba(0, 0, 0, 0.75);
+  box-shadow: 0px 0px 10px 5px rgba(0, 0, 0, 0.10);
 
 
   img {
@@ -26,7 +26,6 @@ export const Header = styled.div`
 export const Menu = styled.div`
   > button {
     margin-left: 20px;
-    margin-right: 20px;
     width: 100px;
     border: none;
     background: none;
@@ -42,31 +41,31 @@ export const MenuIcon = styled.div`
   margin-left: auto;
 
   > button {
-    margin-left: 20px;
-    margin-right: 20px;
     width: 100px;
     border: none;
     background: none;
     font-size: 16px;
     color: ${({ theme }) => theme.text};
+
   }
 `;
 
 export const Content = styled.div`
   display: flex;
   flex-direction: row;
-  margin-right: 40px;
   font-size: medium;
 `;
 
 export const CampText = styled.div`
-  margin-top: 60px;
-  background-color: ${({ theme }) => theme.text};
-  margin-left: 230px;
-  border-radius: 30px;
   display: flex;
   align-items: center;
-  flex-direction: column;
+  flex-direction: column;  
+  margin: 60px;
+  background-color: ${({ theme }) => theme.text};
+  border: 2px solid ${({ theme }) => theme.primary};
+  border-radius: 10px;
+  box-shadow: 0px 0px 10px 5px rgba(0, 0, 0, 0.10);
+
 
   p {
     font-size: 18px;

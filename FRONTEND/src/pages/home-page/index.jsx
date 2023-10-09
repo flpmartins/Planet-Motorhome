@@ -26,7 +26,6 @@ export const HomePage = () => {
         </MenuIcon>
       </Header>
       <Content>
-        <img src={logoPage} alt="" />
         <CampText>
           <h1>MotorHome</h1>
           <br />

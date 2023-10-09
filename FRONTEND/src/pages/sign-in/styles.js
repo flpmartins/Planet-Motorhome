@@ -31,10 +31,11 @@ flex-direction: column;
 text-align: center;
 font-size: 29px;
 font-weight: normal;
-color: #FFF2D3;
+margin: 10px;
+color: ${({ theme }) => theme.text};
 }
 svg {
-  margin-left:10px
+  margin-right: 10px;
 }
 }`
 

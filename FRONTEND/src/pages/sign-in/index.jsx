@@ -15,7 +15,6 @@ import * as Yup from 'yup'
 import getValidationErrors from '../../shared/utils/getValidationErrors'
 
 import logo from './../../assets/logo.png'
-import { Link } from 'react-router-dom'
 
 export const SignIn = () => {
   const formRef = useRef(null)
@@ -29,16 +28,20 @@ export const SignIn = () => {
         email: Yup.string()
           .required('Email obrigatório')
           .email('Digite um email válido'),
-        password: Yup.string().required('Senha obrigatória')
+        password: Yup.string().required('Senha obrigatória').min(6, 'senha com minimo de 8 caracteres')
       })
 
       await schema.validate(formData, { abortEarly: false })
-    } catch (err) {
-      console.log(err) // <-- Correção: usar err em vez de error
-      if (err instanceof Yup.ValidationError) { // <-- Correção: verificar o tipo de erro corretamente
-        const errors = getValidationErrors(err)
+      const { email, password } = formData
 
+      console.log(email, password)
+
+    } catch (err) {
+      console.log(err)
+      if (err instanceof Yup.ValidationError) {
+        const errors = getValidationErrors(err)
         formRef.current?.setErrors(errors)
+        return
       }
     }
   }, [])
@@ -48,11 +51,11 @@ export const SignIn = () => {
       <Content>
         <img src={logo} alt="planetMotorhome" />
         <Form ref={formRef} onSubmit={handleSubmit}>
-          <h1>Log In</h1>
+          <h1>faça seu login</h1>
           <Input name="email" type="email" placeholder="Digite seu email" icon={MdOutlineMailOutline} />
           <Input name="password" type="password" placeholder="Digite sua senha" icon={AiFillLock} />
-          <Button type="submit">To Enter <AiOutlineArrowRight size={12}></AiOutlineArrowRight></Button>
-          <Button type="button">Register <AiOutlineArrowRight size={12} /></Button>
+          <Button type="submit">entrar <AiOutlineArrowRight size={12}></AiOutlineArrowRight></Button>
+          <Button type="button">cadastrar-se <AiOutlineArrowRight size={12} /></Button>
         </Form>
       </Content>
     </Container>

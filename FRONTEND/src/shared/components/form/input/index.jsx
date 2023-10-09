@@ -1,9 +1,14 @@
 import { useField } from '@unform/core'
 import { useRef, useEffect, useState, useCallback } from 'react'
-import { Container } from './styles'
+import { Container, Error } from './styles'
+import { FiAlertCircle } from 'react-icons/fi'
+import { useTheme } from 'styled-components'
 
 export const Input = ({ name, icon: Icon, ...rest }) => {
   const inputRef = useRef(null)
+
+  const theme = useTheme()
+
   const [isFocused, setIsFocused] = useState(false)
   const [isFilled, setIsFilled] = useState(false)
 
@@ -27,7 +32,7 @@ export const Input = ({ name, icon: Icon, ...rest }) => {
   }, [fieldName, registerField])
 
   return (
-    <Container isFocused={isFocused} isFilled={isFilled}>
+    <Container isFocused={isFocused} isFilled={isFilled} isErrored={!!error}>
       {Icon && <Icon size={20} />}
       <input
         type="text"
@@ -37,6 +42,13 @@ export const Input = ({ name, icon: Icon, ...rest }) => {
         onBlur={handleOnBlur}
         onFocus={handleOnFocus}
       />
+
+
+      {error && (
+        <Error title={error}>
+          <FiAlertCircle color={theme.error_title} size={20} />
+        </Error>
+      )}
     </Container>
   )
 }
