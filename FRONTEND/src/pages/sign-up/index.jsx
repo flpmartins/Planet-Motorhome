@@ -1,4 +1,4 @@
-import { useCallback, useRef } from 'react'
+import { useCallback, useRef, useState } from 'react'
 
 import { Container, Content } from './styles'
 
@@ -20,6 +20,8 @@ import logo from './../../assets/logo.png'
 
 export const SignUp = () => {
   const formRef = useRef(null)
+
+  const [showPassword, setShowPassword] = useState(false)
   const handleSubmit = useCallback(async (formData) => {
     try {
       console.log(formData)
@@ -32,8 +34,7 @@ export const SignUp = () => {
           .required('Email obrigatório')
           .email('Digite um email válido'),
         password: Yup.string().required('Senha obrigatória').min(6, 'senha com minimo de 8 caracteres'),
-        confirmPassword: Yup.string().required('Senha obrigatória').min(6, 'senha com minimo de 8 caracteres')
-
+        confirmPassword: Yup.string().oneOf([Yup.ref('password'), null], 'senhas precisam ser iguais')
       })
 
       await schema.validate(formData, { abortEarly: false })
@@ -50,18 +51,28 @@ export const SignUp = () => {
       }
     }
   }, [])
+  const handleShowPassword = useCallback(() => {
+    setShowPassword((prevState) => !prevState)
+  }, [])
 
   return (
     <Container>
       <Content>
         <img src={logo} alt="planetMotorhome" />
         <Form ref={formRef} onSubmit={handleSubmit}>
+
           <h1>faça seu cadastro</h1>
+
           <Input name="name" type="string" placeholder="Digite seu nome" icon={FaUserAlt} />
           <Input name="email" type="email" placeholder="Digite seu email" icon={MdOutlineMailOutline} />
-          <Input name="password" type="password" placeholder="Digite sua senha" icon={AiFillLock} />
-          <Input name="confirmPassword" type="password" placeholder="confirme sua senha" icon={AiFillLock} />
+          <Input name="password" type={showPassword ? 'text' : 'password'} placeholder="Digite sua senha" icon={AiFillLock} />
+
+          <Input name="confirmPassword" type={showPassword ? 'text' : 'password'} placeholder="confirme sua senha" icon={AiFillLock} />
+
+          <span onClick={handleShowPassword}>mostrar senha</span>
+
           <Button type="submit">entrar <AiOutlineArrowRight size={12}></AiOutlineArrowRight></Button>
+
           <Button type="button"><AiOutlineArrowLeft size={12} />já tem cadastro </Button>
         </Form>
       </Content>

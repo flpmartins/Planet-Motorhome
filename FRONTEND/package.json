@@ -5,6 +5,7 @@
   "dependencies": {
     "@unform/core": "^2.1.6",
     "@unform/web": "^2.1.6",
+    "axios": "^1.5.1",
     "font-awesome": "^4.7.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",

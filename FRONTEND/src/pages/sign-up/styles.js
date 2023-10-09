@@ -25,10 +25,31 @@ margin-right:60px;
 
 Form {
 display: flex;
-align-items: center;
 flex-direction: column;
 margin:auto;
+padding: 30px;
+border:6px solid ${({ theme }) => theme.primary};
+border-radius: 15px;
+box-shadow: 0px 0px 10px 5px rgba(0, 0, 0, 0.30);
+justify-content: center;
+align-items: center;
 
+>span {
+  color: ${({ theme }) => theme.text};
+  font-weight: 500;
+  margin-top: 10px;
+  text-align: right;
+  margin-left: 160px;
+  cursor:pointer;
+  transition: all 0.3s;
+
+  &:hover {
+    transform: translateY(2px);
+  }
+}
+>button {
+  align-items: center;
+}
 >h1 {
 text-align: center;
 font-size: 29px;
