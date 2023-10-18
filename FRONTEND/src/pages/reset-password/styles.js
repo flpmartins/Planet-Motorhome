@@ -35,11 +35,12 @@ font-weight: normal;
 margin: 10px;
 color: ${({ theme }) => theme.text};
 }
-> a {
+>span {
       color: ${({ theme }) => theme.primary};
       display: block;
       text-align: right;
-      margin-left: 110px;
+      margin-left: 145px;
+      cursor: pointer;
 
       transition: all 0.3s;
 
