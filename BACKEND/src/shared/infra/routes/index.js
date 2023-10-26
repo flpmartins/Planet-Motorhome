@@ -18,6 +18,4 @@ routes.use('/models', modelsRoutes)
 
 routes.use('/factory', factoryRoutes)
 
-
-
 module.exports = routes

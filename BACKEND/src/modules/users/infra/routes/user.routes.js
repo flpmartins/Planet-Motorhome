@@ -3,7 +3,7 @@ const multer = require('multer')
 
 const uploadConfig = require('../../../../config/upload')
 
-const { 
+const {
   createUser,
   listAllUser,
   listUser,
@@ -12,10 +12,10 @@ const {
   resetPassword,
   updatedAvatar,
   deleteduser
-     } = require('../controllers/users.controller')
+} = require('../controllers/users.controller')
 
 
-const { 
+const {
   verifyPayloadForCreation,
   verifyEmailToForgotPassword,
   verifyPayloadForResetPassword
@@ -29,7 +29,8 @@ const usersRouters = Router()
 
 const upload = multer(uploadConfig)
 
-usersRouters.post('/forgot',verifyEmailToForgotPassword(), forgotPassword)
+usersRouters.post('/forgot-password',
+  verifyEmailToForgotPassword(), forgotPassword)
 
 usersRouters.post('/', verifyPayloadForCreation(), createUser)
 
@@ -37,12 +38,12 @@ usersRouters.get('/listall', listAllUser)
 
 usersRouters.get('/listUser/:id', listUser)
 
-usersRouters.put('/updated/:id',ensureAuthenticated, updatedUser)
+usersRouters.put('/updated/:id', ensureAuthenticated, updatedUser)
 
-usersRouters.patch('/reset-password/:token',verifyPayloadForResetPassword(), resetPassword)
+usersRouters.patch('/reset-password/:token', verifyPayloadForResetPassword(), resetPassword)
 
-usersRouters.patch('/avatar',ensureAuthenticated,upload.single('avatar') ,updatedAvatar)
+usersRouters.patch('/avatar', ensureAuthenticated, upload.single('avatar'), updatedAvatar)
 
-usersRouters.delete('/deleted',ensureAuthenticated, deleteduser)
+usersRouters.delete('/deleted', ensureAuthenticated, deleteduser)
 
 module.exports = usersRouters

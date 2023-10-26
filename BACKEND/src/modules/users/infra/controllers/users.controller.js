@@ -54,9 +54,9 @@ module.exports = {
 
     const { email } = request.body
 
-    const result = await forgotPassword.execute({ email })
+    await forgotPassword.execute({ email })
 
-    return response.status(203).send(result)
+    return response.status(203).send()
   },
   async resetPassword(request, response) {
     const { token } = request.params

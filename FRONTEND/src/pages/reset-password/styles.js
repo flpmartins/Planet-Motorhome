@@ -36,7 +36,7 @@ margin: 10px;
 color: ${({ theme }) => theme.text};
 }
 >span {
-      color: ${({ theme }) => theme.primary};
+      color: ${({ theme }) => theme.text};
       display: block;
       text-align: right;
       margin-left: 145px;

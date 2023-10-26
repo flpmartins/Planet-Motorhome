@@ -1,6 +1,6 @@
 import { createContext, useState, useCallback, useContext } from 'react'
 import { enviroments } from '../environments'
-import { login } from '../../api/planet-motorhome-api'
+import { signInLoign } from '../../api/planet-motorhome-api'
 
 const AuthContext = createContext({})
 
@@ -16,7 +16,7 @@ const AuthProvider = ({ children }) => {
   })
 
   const signIn = useCallback(async (email, password) => {
-    const result = await login({ email, password })
+    const result = await signInLoign({ email, password })
 
     const { user, token } = result
 
@@ -35,6 +35,7 @@ const AuthProvider = ({ children }) => {
         signIn,
         signOut,
         user: data.user,
+        token: data.token
       }}
     >
       {children}

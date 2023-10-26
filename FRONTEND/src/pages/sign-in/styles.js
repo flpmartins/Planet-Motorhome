@@ -36,7 +36,7 @@ margin: 10px;
 color: ${({ theme }) => theme.text};
 }
 > a {
-      color: ${({ theme }) => theme.primary};
+      color: ${({ theme }) => theme.text};
       display: block;
       text-align: right;
       margin-left: 110px;

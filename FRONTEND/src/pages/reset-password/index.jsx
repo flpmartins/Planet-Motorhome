@@ -19,7 +19,7 @@ import logo from './../../assets/logo.png'
 import { resetPassword } from '../../api/planet-motorhome-api'
 
 
-export const ResetPasssword = () => {
+export const ResetPassword = () => {
 
   const formRef = useRef(null)
   const navigate = useNavigate()

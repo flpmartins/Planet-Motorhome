@@ -1,6 +1,6 @@
 import { useCallback, useRef } from 'react'
 
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { Container, Content } from './styles'
 import { Button, Input } from '../../shared/components'
 
@@ -20,6 +20,7 @@ import logo from './../../assets/logo.png'
 
 export const SignIn = () => {
   const formRef = useRef(null)
+  const navigate = useNavigate()
 
   const { signIn } = useAuth()
   const { addToast } = useToast()
@@ -49,6 +50,7 @@ export const SignIn = () => {
         type: 'success',
         title: 'Usuário logado com sucesso!',
       })
+      navigate('/home')
 
     } catch (err) {
       console.log(err)

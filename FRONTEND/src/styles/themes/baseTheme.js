@@ -4,10 +4,14 @@ export default {
 
   secondary: '#262626',
   secondary_light: '#ffffff',
+  contrast: '#fffff0',
 
   text: '#F2F2F2',
   background: '##717339',
   gray: '#808080',
+
+  shadow: '0 0 10px rgb(255, 255, 255, 0.5)',
+
 
   success_title: '#2e656a',
   success_background: '#e6fffa',
