@@ -3,9 +3,8 @@ import styled from 'styled-components'
 export const Container = styled.div`
   grid-area: HE;
   display: flex;
- justify-content: space-between;
-  
-
+  justify-content: space-between;
+  box-shadow: 0px 0px 10px 5px rgba(0, 0, 0, 0.25);
   background: ${({ theme }) => theme.primary};
   color:${({ theme }) => theme.contrast};
 `

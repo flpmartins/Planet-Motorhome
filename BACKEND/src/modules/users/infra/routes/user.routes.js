@@ -7,7 +7,7 @@ const {
   createUser,
   listAllUser,
   listUser,
-  updatedUser,
+  updateUser,
   forgotPassword,
   resetPassword,
   updatedAvatar,
@@ -38,7 +38,7 @@ usersRouters.get('/listall', listAllUser)
 
 usersRouters.get('/listUser/:id', listUser)
 
-usersRouters.put('/updated/:id', ensureAuthenticated, updatedUser)
+usersRouters.put('/updated/:id', ensureAuthenticated, updateUser)
 
 usersRouters.patch('/reset-password/:token', verifyPayloadForResetPassword(), resetPassword)
 

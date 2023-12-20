@@ -29,11 +29,31 @@ const AuthProvider = ({ children }) => {
     setData({})
   }, [])
 
+  const updateUser = useCallback(
+    (userUpdated) => {
+      try {
+        const updatedUser = JSON.stringify({
+          user: userUpdated,
+          token: data.token,
+        });
+
+        setData({ user: userUpdated, token: data.token });
+
+        localStorage.setItem(enviroments.APP_NAME, updatedUser);
+      } catch (error) {
+        // Trate o erro aqui, como exibindo uma mensagem ao usuário ou registrando no console.
+        console.error('Erro durante a atualização do usuário:', error);
+      }
+    },
+    [data.token],
+  );
+
   return (
     <AuthContext.Provider
       value={{
         signIn,
         signOut,
+        updateUser,
         user: data.user,
         token: data.token
       }}

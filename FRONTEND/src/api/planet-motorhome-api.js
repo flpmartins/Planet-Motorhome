@@ -56,4 +56,24 @@ const resetPassword = async (params) => {
   return result.data
 }
 
-export { signInLoign, signUp, forgotPassword, resetPassword }
+const updateUserData = async (userData) => {
+  try {
+    const result = await api.put(`/users/updated/${userData.id}`, userData)
+
+    return result.data
+  } catch (error) {
+    throw new Error(error.message)
+  }
+}
+
+const uploadImage = async (avatar) => {
+  try {
+    const result = await api.patch('users/avatar', avatar)
+
+    return result.data
+  } catch (error) {
+    throw new Error(error.message)
+  }
+}
+
+export { signInLoign, signUp, forgotPassword, resetPassword, uploadImage, updateUserData }

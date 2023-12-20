@@ -4,6 +4,7 @@ const express = require('express')
 const { errors } = require('celebrate')
 const Youch = require('youch')
 const cors = require('cors')
+const uploadConfig = require('../../config/upload')
 
 require('express-async-errors')
 
@@ -18,6 +19,7 @@ server.use(cors({ origin: '*' }))
 server.get('/health', (req, res) => {
   return res.json({ message: 'App is running' })
 })
+server.use('/files', express.static(uploadConfig.directory))
 
 server.use(routes)
 

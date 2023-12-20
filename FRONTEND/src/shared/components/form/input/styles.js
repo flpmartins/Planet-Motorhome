@@ -30,7 +30,9 @@ export const Container = styled.div`
   color:${({ theme }) => theme.primary};
   `
   }
-  input {
+  input { 
+   display:flex;
+    width: 270px;
     background-color: transparent;
     border: 0;
     font-size: 16px;

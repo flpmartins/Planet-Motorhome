@@ -1,31 +1,60 @@
+import { useState, useEffect } from 'react'
 
 import { FiEdit } from 'react-icons/fi'
 import { useTheme } from 'styled-components'
-
+import { enviroments } from '../../../environments'
 import { Link } from 'react-router-dom'
-
 import { useAuth } from '../../../hooks/auth'
-import { Container, ActionsProfileContainer, ImageContainer, Image } from './styles'
+
+import {
+  Container,
+  ActionsProfileContainer,
+  ImageContainer,
+  Image
+} from './styles'
+
 export const Header = () => {
   const { user } = useAuth()
-  const theme = useTheme()
 
+  const theme = useTheme()
+  const [picture, setPicture] = useState(() => {
+    const appData = JSON.parse(localStorage.getItem(enviroments.APP_NAME))
+
+    if (appData) {
+      return appData.user.avatar
+    }
+
+    return ''
+  })
+
+  useEffect(() => {
+    setPicture(() => {
+      const appData = JSON.parse(localStorage.getItem(enviroments.APP_NAME))
+
+      if (appData) {
+        return appData.user.avatar
+      }
+
+      return ''
+    })
+  }, [user.avatar])
   return (
     <Container>
       <ImageContainer>
-
-        <Image src={
-          user.avatar
-            ? user.avatar
-            : `https://ui-avatars.com/api/?font-size=0.33&background=${theme.secondary.substring(
-              1,
-              theme.primary.length,
-            )}&color=${theme.contrast.substring(
-              1,
-              theme.contrast.length,
-            )}&name=${user.name}`
-        }
-          alt={user.name} />
+        <Image
+          src={
+            picture
+              ? `${enviroments.URL_API_PLANETMOTORHOME + '/files/' + picture}`
+              : `https://ui-avatars.com/api/?font-size=0.33&background=${theme.background.substring(
+                1,
+                theme.background.length,
+              )}&color=${theme.contrast.substring(
+                1,
+                theme.contrast.length,
+              )}&name=${user.name}`
+          }
+          alt={user.name}
+        />
       </ImageContainer >
       <ActionsProfileContainer>
         <strong> Olá, </strong>
