@@ -48,10 +48,6 @@ export const Profile = () => {
         formRef.current?.setErrors({})
 
         const schema = Yup.object().shape({
-          name: Yup.string().required('Nome obrigatório'),
-          email: Yup.string()
-            .required('Email obrigatório')
-            .email('Digite um email válido'),
           password: Yup.string(),
           confirm_password: Yup.string().oneOf(
             [Yup.ref('password'), null],
@@ -100,23 +96,20 @@ export const Profile = () => {
         const formData = new FormData()
         formData.append('avatar', event.target.files[0])
 
-        console.log('Fazendo upload da imagem...'); // Adicione esta linha para depuração
+        console.log('Fazendo upload da imagem...')
 
         const { data } = await uploadImage(formData)
 
-        console.log('Upload de imagem bem-sucedido:', data); // Adicione esta linha para depuração
+        console.log('Upload de imagem bem-sucedido:', data)
 
         updateUser(data)
         setPicture(data.avatar)
       } catch (error) {
-        console.error('Erro no upload da imagem:', error); // Adicione esta linha para depuração
+        console.error('Erro no upload da imagem:', error)
       }
     },
     [updateUser],
   )
-  console.log('URL da Imagem:', picture
-    ? `${enviroments.URL_API_PLANETMOTORHOME + '/files/' + picture}`
-    : 'URL padrão ou alternativa para o avatar');
   return (
     <Container>
       <Content>

@@ -1,6 +1,6 @@
 import { createContext, useState, useCallback, useContext } from 'react'
 import { enviroments } from '../environments'
-import { signInLoign } from '../../api/planet-motorhome-api'
+import { signInLoign, signInLoginSocial } from '../../api/planet-motorhome-api'
 
 const AuthContext = createContext({})
 
@@ -24,6 +24,20 @@ const AuthProvider = ({ children }) => {
     setData({ user, token })
   }, [])
 
+  const signInSocial = useCallback(async ({ email, name, provider_id }) => {
+    try {
+      const socialLoginResult = await signInLoginSocial({ email, name, provider_id });
+      const { user, token } = socialLoginResult;
+      console.log(socialLoginResult);
+
+
+      localStorage.setItem(enviroments.APP_NAME, JSON.stringify({ user, token }));
+      setData({ user, token });
+    } catch (error) {
+      console.error('Erro durante o login social:', error);
+    }
+  }, []);
+
   const signOut = useCallback(() => {
     localStorage.removeItem(enviroments.APP_NAME)
     setData({})
@@ -41,7 +55,6 @@ const AuthProvider = ({ children }) => {
 
         localStorage.setItem(enviroments.APP_NAME, updatedUser);
       } catch (error) {
-        // Trate o erro aqui, como exibindo uma mensagem ao usuário ou registrando no console.
         console.error('Erro durante a atualização do usuário:', error);
       }
     },
@@ -52,6 +65,7 @@ const AuthProvider = ({ children }) => {
     <AuthContext.Provider
       value={{
         signIn,
+        signInSocial,
         signOut,
         updateUser,
         user: data.user,

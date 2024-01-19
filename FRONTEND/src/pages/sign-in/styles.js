@@ -53,4 +53,8 @@ color: ${({ theme }) => theme.text};
 }
 }`
 
+export const Loginstyle = styled.div`
+display: flex;
+align-items: stretch;
+`
 

@@ -17,6 +17,20 @@ const signInLoign = async (params) => {
 
 /**
  *
+ * @param {*} params (email, password)
+ * @description: Chamada a API para loginSocial
+ */
+const signInLoginSocial = async (params) => {
+  try {
+    const result = await api.post('/login/social', params)
+
+    return result.data
+  } catch (error) {
+    throw new Error(error.message)
+  }
+}
+/**
+ *
  * @param {*} params (name, email, password)
  * @description: Chamada a API para cadastro
  */
@@ -76,4 +90,12 @@ const uploadImage = async (avatar) => {
   }
 }
 
-export { signInLoign, signUp, forgotPassword, resetPassword, uploadImage, updateUserData }
+export {
+  signInLoign,
+  signInLoginSocial,
+  signUp,
+  forgotPassword,
+  resetPassword,
+  uploadImage,
+  updateUserData
+}

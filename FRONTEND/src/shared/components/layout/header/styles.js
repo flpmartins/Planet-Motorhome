@@ -7,6 +7,7 @@ export const Container = styled.div`
   box-shadow: 0px 0px 10px 5px rgba(0, 0, 0, 0.25);
   background: ${({ theme }) => theme.primary};
   color:${({ theme }) => theme.contrast};
+  
 `
 export const ImageContainer = styled.div``
 
@@ -15,9 +16,10 @@ export const Image = styled.img`
   margin-left:10px;
   width: 80px;
   height: 80px;
+  cursor: pointer;
 
   border-radius: 50%;
-  box-shadow: ${({ theme }) => theme.shadow};
+  box-shadow: 0px 0px 10px 5px rgba(0, 0, 0, 0.35);
   `
 
 export const ActionsProfileContainer = styled.div`
@@ -42,3 +44,20 @@ transition: all 0.3s;
 }
 
 `
+export const NavLinks = styled.div`
+  display: flex;
+  margin: auto;
+  gap: 150px;
+  
+  a {
+    text-decoration: none;
+    color: ${({ theme }) => theme.text};
+    font-size: 18px;
+
+    &:hover {
+      color: ${({ theme }) => theme.secondary};
+      transition: all 0.5s;
+      transform: scale(1.15);
+    }
+  }
+`;

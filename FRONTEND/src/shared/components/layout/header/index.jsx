@@ -10,7 +10,8 @@ import {
   Container,
   ActionsProfileContainer,
   ImageContainer,
-  Image
+  Image,
+  NavLinks,
 } from './styles'
 
 export const Header = () => {
@@ -38,10 +39,11 @@ export const Header = () => {
       return ''
     })
   }, [user.avatar])
+
   return (
     <Container>
       <ImageContainer>
-        <Image
+        <Image to="/profile"
           src={
             picture
               ? `${enviroments.URL_API_PLANETMOTORHOME + '/files/' + picture}`
@@ -55,7 +57,15 @@ export const Header = () => {
           }
           alt={user.name}
         />
-      </ImageContainer >
+      </ImageContainer>
+
+      <NavLinks>
+        <Link to="/about">Sobre Nós</Link>
+        <Link to="/campings">Campings</Link>
+        <Link to="/contact">Contato</Link>
+        <Link to="/team">Equipe</Link>
+      </NavLinks>
+
       <ActionsProfileContainer>
         <strong> Olá, </strong>
         <Link to="/profile">
@@ -63,7 +73,6 @@ export const Header = () => {
           <span>{user.name}</span>
         </Link>
       </ActionsProfileContainer>
-
-    </Container >
+    </Container>
   )
 }

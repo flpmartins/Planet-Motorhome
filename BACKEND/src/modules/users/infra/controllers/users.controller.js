@@ -44,10 +44,10 @@ module.exports = {
   async updateUser(request, response) {
     const updateUser = new UpdateUserService(usersRepository)
 
-    const { userId } = request.params
+    const { id } = request.params
 
     const user = await updateUser.execute({
-      id: userId,
+      id,
       ...request.body,
     })
 

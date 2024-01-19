@@ -79,7 +79,7 @@ export const ButtonImage = styled.label`
   &:hover {
     opacity: 1;
     cursor: pointer;
-    background-color: rgba(0, 0, 0, 0.75);
+    background-color: rgba(0, 0, 0, 0.40);
   }
 
   svg {

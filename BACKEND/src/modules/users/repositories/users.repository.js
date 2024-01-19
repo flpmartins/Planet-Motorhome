@@ -11,6 +11,12 @@ module.exports = {
     }
   },
 
+  async loginUserSocial(payload) {
+    const user = await connection('users').insert(payload).returning('*')
+
+    return user[0]
+  },
+
   async createUser(payload) {
     try {
       const user = await connection('users').insert(payload).returning('*')

@@ -1,5 +1,4 @@
 import { Routes, Route, Navigate } from 'react-router-dom'
-
 import { Layout } from '../shared/components/layout'
 
 import { PrivateRoutes } from './privateRoutes'
@@ -9,7 +8,10 @@ import {
   Forgot,
   ResetPassword,
   Dashboard,
-  Profile
+  Profile,
+  Factorys,
+  Models,
+  Campings
 } from '../pages'
 
 export const AppRoutes = () => {
@@ -21,17 +23,39 @@ export const AppRoutes = () => {
       <Route path="/reset-password/:token" element={<ResetPassword />} />
 
       <Route element={<PrivateRoutes />}>
-
         <Route path="/home" element={
           <Layout>
             <Dashboard />
           </Layout>} />
-
         <Route
           path="/profile"
           element={
             <Layout>
               <Profile />
+            </Layout>
+          }
+        />
+        <Route
+          path="/factory"
+          element={
+            <Layout>
+              <Factorys />
+            </Layout>
+          }
+        />
+        <Route
+          path="/models"
+          element={
+            <Layout>
+              <Models />
+            </Layout>
+          }
+        />
+        <Route
+          path="/campings"
+          element={
+            <Layout>
+              <Campings />
             </Layout>
           }
         />

@@ -13,7 +13,7 @@ module.exports = {
   verifyForgotPassword() {
     return celebrate({
       [Segments.BODY]: {
-        email:joi.string().email().required()
+        email: joi.string().email().required()
       },
     })
   },
@@ -24,6 +24,16 @@ module.exports = {
         password: Joi.string().required().min(6),
       },
     })
+  },
+
+  postSessionsSocial() {
+    return celebrate({
+      [Segments.BODY]: Joi.object().keys({
+        provider_id: Joi.string().required('provider is required'),
+        name: Joi.string().required('name is required'),
+        email: Joi.string().email().required('email is required'),
+      }),
+    });
   },
   verifyEmailToForgotPassword() {
     return celebrate({
