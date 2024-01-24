@@ -1,20 +1,19 @@
-const multer = require('multer')
-// const crypto = require('crypto')
-const path = require('path')
-const { v4: uuid } = require('uuid')
+const path = require('path');
+const crypto = require('crypto');
+const multer = require('multer');
 
-const tmpFolder = path.resolve(__dirname, '..', '..', 'tmp')
+const tmpFolder = path.resolve(__dirname, '..', '..', 'tmp');
 
 module.exports = {
   directory: tmpFolder,
   storage: multer.diskStorage({
     destination: tmpFolder,
     filename(_, file, callback) {
-      // const hashCode = crypto.randomBytes(6).toString('hex')
-      const hashCode = uuid()
-      const fileName = `${hashCode}-${file.originalname}`
+      const fileHash = crypto.randomBytes(10).toString('hex');
 
-      return callback(null, fileName)
+      const fileName = `${fileHash}-${file.originalname}`;
+
+      return callback(null, fileName);
     },
   }),
-}
+};

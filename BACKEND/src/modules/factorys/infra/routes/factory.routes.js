@@ -1,31 +1,35 @@
-const  {Router} = require('express')
+const { Router } = require('express')
+const multer = require('multer')
 
-const { 
+const uploadConfig = require('../../../../config/upload')
 
+const upload = multer(uploadConfig)
+
+
+const {
   factoryCreate,
   factoryDeleted,
   factoryList,
-  factoryPatch,
-  factoryPut,
-  factoryListAll
+  factoryListAll,
+  factoryUpdate,
+  updateFactoryPicture
+} = require('../controllers/factory.controllers')
 
-}= require('../controllers/factory.controllers')
-
-const {verifyFactoryIdInParams, verifyFactoryForCreation} = require('../../middlewares/factory.middlewares')
+const { verifyFactoryIdInParams, verifyFactoryForCreation, putFactory } = require('../../middlewares/factory.middlewares')
 
 const factoryRoutes = Router()
 
-factoryRoutes.post('/',verifyFactoryForCreation(), factoryCreate )
+factoryRoutes.post('/', verifyFactoryForCreation(), factoryCreate)
 
-factoryRoutes.get('/list/:id', factoryList )
+factoryRoutes.get('/list/:id', factoryList)
 
-factoryRoutes.get('/listAll', factoryListAll )
+factoryRoutes.get('/listAll', factoryListAll)
 
-factoryRoutes.put('/alter/models',  factoryPut )
+factoryRoutes.delete('/delete/:id', verifyFactoryIdInParams(), factoryDeleted)
 
-factoryRoutes.patch('/alter', factoryPatch )
+factoryRoutes.put('/put/:id', putFactory(), factoryUpdate)
 
-factoryRoutes.delete('/delete/:id',verifyFactoryIdInParams(), factoryDeleted )
+factoryRoutes.patch('/:id/avatar', putFactory(), upload.single('avatar'), updateFactoryPicture)
 
 module.exports = factoryRoutes
 

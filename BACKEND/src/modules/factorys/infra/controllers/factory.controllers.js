@@ -2,6 +2,8 @@ const CreateFactoryService = require('../../services/CreateFactoryService')
 const ListFactoryService = require('../../services/ListFactoryService')
 const ListAllFactoryService = require('../../services/ListAllfactorysService')
 const DeleteFactoryService = require('../../services/DeleteFactoryService')
+const UpdateFactoryService = require('../../services/UpdateFactoryService')
+const UpdateFactoryPictureService = require('../../services/UpdateFactoryPictureService')
 
 const factoryRepository = require('../../repositories/factory.repository')
 
@@ -51,11 +53,29 @@ module.exports = {
     return response.json({ message: 'deleted factory' })
   },
 
-  async factoryPatch(request, response) {
-    return response.json({ message: 'factoryPatch' })
+  async factoryUpdate(request, response) {
+    const updateFactory = new UpdateFactoryService(factoryRepository)
+
+    const { id } = request.params
+
+    const factoryUpdated = await updateFactory.execute({
+      id,
+      ...request.body
+    })
+
+    return response.json({ data: factoryUpdated })
   },
 
-  async factoryPut(request, response) {
-    return response.json({ message: 'factoryPut' })
-  },
+  async updateFactoryPicture(request, response) {
+    const updateFactoryService = new UpdateFactoryPictureService(factoryRepository)
+
+    const { id } = request.params
+
+    const updateFactoryPicture = await updateFactoryService.execute({
+      id,
+      fileName: request.file.filename
+    })
+
+    return response.json(updateFactoryPicture)
+  }
 }

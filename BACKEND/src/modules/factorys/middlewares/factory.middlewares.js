@@ -9,6 +9,7 @@ module.exports = {
       },
     })
   },
+
   verifyFactoryForCreation() {
     return celebrate({
       [Segments.BODY]: {
@@ -19,4 +20,20 @@ module.exports = {
       },
     })
   },
+
+  putFactory() {
+    return celebrate({
+      [Segments.PARAMS]: Joi.object().keys({
+        id: Joi.string().required('id is required')
+      })
+    })
+  },
+
+  patchFactory() {
+    return celebrate({
+      [Segments.PARAMS]: Joi.object().keys({
+        id: Joi.string().required('id is required')
+      })
+    })
+  }
 }

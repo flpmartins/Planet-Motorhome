@@ -2,7 +2,7 @@ const AppError = require('../../../shared/AppError')
 
 const connection = require('../../../shared/database/connection')
 
-class FactoryRepository {
+module.exports = {
 
   async createFactory(payload) {
     try {
@@ -16,15 +16,15 @@ class FactoryRepository {
 
       throw new AppError(err.message)
     }
-  }
+  },
 
-  async listFactory(id) {
+  async listFactory(idFactory) {
     try {
-      return connection('factory').where({ id }).first()
+      return connection('factory').where({ id: idFactory }).first()
     } catch (error) {
       throw new AppError(error.message)
     }
-  }
+  },
 
   async listAllfactory() {
     try {
@@ -34,7 +34,7 @@ class FactoryRepository {
     } catch (err) {
       throw new AppError(err.message)
     }
-  }
+  },
 
   async deleteFactory(id) {
     try {
@@ -42,7 +42,21 @@ class FactoryRepository {
     } catch (err) {
       throw new AppError(err.message)
     }
-  }
-}
+  },
 
-module.exports = new FactoryRepository()
+  async updateFactory(payload) {
+    try {
+      const { id, ...updateData } = payload;
+
+      const updatedFactory = await connection('factory')
+        .where('id', id)
+        .update(updateData)
+        .returning('*');
+
+      return updatedFactory[0];
+    } catch (error) {
+      throw new AppError(error.message);
+    }
+  }
+
+}
