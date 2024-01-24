@@ -92,7 +92,7 @@ export const Aside = () => {
             startIcon={<ImExit />}
             variant="contained"
             color="secondary"
-            style={{ textTransform: 'none', fontSize: '18px' }}
+            style={{ textTransform: 'none', fontSize: '18px', background: "#717339", borderRadius: "20px" }}
           >
             Sair
           </Button>

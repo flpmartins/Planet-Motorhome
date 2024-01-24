@@ -82,7 +82,7 @@ const updateUserData = async (users) => {
 
 const uploadImage = async (avatar) => {
   try {
-    const result = await api.patch('users/avatar', avatar)
+    const result = await api.patch('/users/avatar', avatar)
 
     return result.data
   } catch (error) {
@@ -90,9 +90,9 @@ const uploadImage = async (avatar) => {
   }
 }
 
-const getFactory = async (params) => {
+const getFactory = async () => {
   try {
-    const result = await api.get('users/avatar', params)
+    const result = await api.get('factory/listAll')
 
     return result.data
   } catch (error) {
@@ -102,7 +102,7 @@ const getFactory = async (params) => {
 
 const createFactory = async (params) => {
   try {
-    const result = await api.post('factory/listAll', params)
+    const result = await api.post('factory', params)
 
     return result.data
   } catch (error) {
@@ -117,5 +117,7 @@ export {
   forgotPassword,
   resetPassword,
   uploadImage,
-  updateUserData
+  updateUserData,
+  getFactory,
+  createFactory
 }

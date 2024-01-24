@@ -11,7 +11,7 @@ import {
   Profile,
   Factorys,
   Models,
-  Campings
+  Campings,
 } from '../pages'
 
 export const AppRoutes = () => {
@@ -59,6 +59,7 @@ export const AppRoutes = () => {
             </Layout>
           }
         />
+
       </Route>
       <Route path="*" element={<Navigate to="/" />} />
     </Routes>

@@ -4,7 +4,6 @@ export const Container = styled.div`
   grid-area: HE;
   display: flex;
   justify-content: space-between;
-  box-shadow: 0px 0px 10px 5px rgba(0, 0, 0, 0.25);
   background: ${({ theme }) => theme.primary};
   color:${({ theme }) => theme.contrast};
   
@@ -19,7 +18,6 @@ export const Image = styled.img`
   cursor: pointer;
 
   border-radius: 50%;
-  box-shadow: 0px 0px 10px 5px rgba(0, 0, 0, 0.35);
   `
 
 export const ActionsProfileContainer = styled.div`
