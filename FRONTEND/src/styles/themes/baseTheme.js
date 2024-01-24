@@ -1,6 +1,6 @@
 export default {
   primary: '#717339',
-  primary_light: '',
+  primary_light: '#001',
 
   secondary: '#262626',
   secondary_light: '#ffffff',

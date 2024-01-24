@@ -10,8 +10,9 @@ import { useToast } from '../../shared/hooks/toast'
 import { Form } from '@unform/web'
 import * as Yup from 'yup'
 import getValidationErrors from '../../shared/utils/getValidationErrors'
+import { Box, Divider } from '@mui/material'
 import logo from './../../assets/logo.png'
-
+import background from '../../assets/background.png'
 export const Forgot = () => {
   const formRef = useRef(null)
   const navigate = useNavigate()
@@ -62,17 +63,51 @@ export const Forgot = () => {
 
   return (
     <Container>
-      <Content>
-        <img src={logo} alt="planetMotorhome" />
-        <Form ref={formRef} onSubmit={handleSubmit}>
-          <h1>esqueci minha senha</h1>
-          <Input name="email" type="email" placeholder="Digite seu email" icon={MdOutlineMailOutline} />
-          <Button type="submit">enviar<AiOutlineArrowRight size={12}></AiOutlineArrowRight></Button>
-          <Button type="button"><AiOutlineArrowLeft size={12} style={{ marginRight: '5px' }}></AiOutlineArrowLeft>
-            <Link to="/" style={{ color: 'white' }}>voltar para login</Link>
-          </Button>
-        </Form>
-      </Content>
-    </Container>
+      <Box
+        sx={{
+          position: 'fixed',
+          display: 'flex',
+          zIndex: -1,
+          backgroundImage: `url(${background})`,
+          backgroundRepeat: 'no-repeat',
+          height: '100vh',
+          width: '100%',
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+          alignItems: 'center',
+          justifyContent: 'center',
+          filter: 'blur(2px)',
+        }}
+      />
+      <Box sx={{
+        display: 'flex',
+        width: '100%',
+        flexDirection: 'column',
+        alignItems: 'center',
+        justifyContent: 'center',
+        height: '100vh',
+        position: 'fixed',
+        margin: 'auto',
+
+      }}>
+        <Content>
+          <img src={logo} alt="planetMotorhome" />
+          <Form ref={formRef} onSubmit={handleSubmit} >
+            <h1 style={{
+              fontWeight: "bold",
+            }}>Recuperar Senha</h1>
+
+            <br />
+            <Divider color='717339' width='80%' />
+
+            <br />
+            <Input name="email" type="email" placeholder="Digite seu email" icon={MdOutlineMailOutline} />
+            <Button type="submit">enviar<AiOutlineArrowRight size={12}></AiOutlineArrowRight></Button>
+            <Link to="/" style={{ color: 'white', textAlign: 'center' }}><AiOutlineArrowLeft size={12} style={{ marginRight: '5px' }}></AiOutlineArrowLeft>voltar para login</Link>
+            <br />
+          </Form>
+        </Content>
+      </Box>
+    </Container >
   )
 }

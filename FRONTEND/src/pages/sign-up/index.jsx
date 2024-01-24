@@ -12,9 +12,9 @@ import { Form } from '@unform/web'
 import * as Yup from 'yup'
 
 import getValidationErrors from '../../shared/utils/getValidationErrors'
-
+import { Box, Divider } from '@mui/material'
 import logo from './../../assets/logo.png'
-
+import background from '../../assets/background.png'
 import { signUp } from '../../api/planet-motorhome-api'
 
 
@@ -71,34 +71,64 @@ export const SignUp = () => {
 
   return (
     <Container>
-      <Content>
-        <img src={logo} alt="planetMotorhome" />
+      <Box
+        sx={{
+          position: 'fixed',
+          display: 'flex',
+          zIndex: -1,
+          backgroundImage: `url(${background})`,
+          backgroundRepeat: 'no-repeat',
+          height: '100vh',
+          width: '100%',
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+          alignItems: 'center',
+          justifyContent: 'center',
+          filter: 'blur(2px)',
+        }}
+      />
+      <Box sx={{
+        display: 'flex',
+        width: '100%',
+        flexDirection: 'column',
+        alignItems: 'center',
+        justifyContent: 'center',
+        height: '100vh',
+        position: 'fixed',
+        margin: 'auto',
 
-        <Form ref={formRef} onSubmit={handleSubmit}>
+      }}>
+        <Content>
 
-          <h1>faça seu cadastro</h1>
+          <Form ref={formRef} onSubmit={handleSubmit}>
+            <img src={logo} alt="planetMotorhome" />
 
-          <Input name="name" type="text"
-            placeholder="Digite seu nome" icon={FaUserAlt} />
-          <Input name="email" type="email"
-            placeholder="Digite seu email" icon={MdOutlineMailOutline} />
-          <Input name="password" type={showPassword ? 'text' : 'password'}
-            placeholder="Digite sua senha" icon={AiFillLock} />
+            <h1 style={{
+              fontWeight: "bold",
+            }}>Cadastre sua conta</h1>
+            <Divider color='717339' width='80%' />
+            <br />
+            <Input name="name" type="text"
+              placeholder="Digite seu nome" icon={FaUserAlt} />
+            <Input name="email" type="email"
+              placeholder="Digite seu email" icon={MdOutlineMailOutline} />
+            <Input name="password" type={showPassword ? 'text' : 'password'}
+              placeholder="Digite sua senha" icon={AiFillLock} />
 
-          <Input name="confirmPassword" type={showPassword ? 'text' : 'password'}
-            placeholder="confirme sua senha" icon={AiFillLock} />
+            <Input name="confirmPassword" type={showPassword ? 'text' : 'password'}
+              placeholder="confirme sua senha" icon={AiFillLock} />
 
-          <span onClick={handleShowPassword}>mostrar senha</span>
+            <span onClick={handleShowPassword}>mostrar senha</span>
 
-          <Button type="submit">entrar <AiOutlineArrowRight size={12}></AiOutlineArrowRight></Button>
+            <Button type="submit">entrar <AiOutlineArrowRight size={12}></AiOutlineArrowRight></Button>
+            <br />
+            <Link to="/" style={{ color: 'white' }}>          <AiOutlineArrowLeft size={12} />
+              já tem cadastro</Link>
+            <br />
 
-          <Button type="button">
-            <AiOutlineArrowLeft size={12} />
-            <Link to="/" style={{ color: 'white' }}>já tem cadastro</Link>
-          </Button>
-
-        </Form>
-      </Content>
-    </Container>
+          </Form>
+        </Content>
+      </Box>
+    </Container >
   )
 }

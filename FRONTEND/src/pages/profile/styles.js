@@ -2,20 +2,23 @@ import styled from 'styled-components';
 import { Form } from '@unform/web';
 
 export const Container = styled.div`
-  height: 100vh;
+  width: 100%;
+  height: 100%;
+  background-repeat: no-repeat;
+  background-size: cover;
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
+  background: rgb(111, 111,111, 0.2);
+;
 `;
 
 export const Content = styled.div`
-  background: ${({ theme }) => theme.secondary};
-  box-shadow: 0px 0px 10px 5px rgba(0, 0, 0, 0.25);
-  border-radius: 30px;
-  display: flex;
-  align-items: center;
-  flex-direction: row;
-  margin: auto;
-  padding: 80px;
+display: flex;
+ align-items: center;
+flex-direction: row;
+padding-left:4%;
+padding-right:4%;
+border-radius: 5px;
 `;
 
 export const Img = styled.img`
@@ -24,7 +27,6 @@ export const Img = styled.img`
   border-radius: 50%;
   margin-top: 8px;
   box-shadow: 0px 0px 10px 5px rgba(0, 0, 0, 0.35);
-
 ;
 `
 
@@ -38,7 +40,7 @@ export const FormContainer = styled(Form)`
     text-align: center;
     font-size: 25px;
     font-weight: normal;
-    color: ${({ theme }) => theme.text};
+    color: ${({ theme }) => theme.secondary};
   }
 
   > div {

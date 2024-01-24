@@ -3,8 +3,6 @@ import styled from 'styled-components'
 export const Container = styled.div`
 height: 100vh;
 display: flex;
-align-items: stretch;
-background-color: #6C7339;
 `
 
 export const Content = styled.div`
@@ -12,20 +10,21 @@ display:flex;
 align-items:center;
 flex-direction:column;
 margin: auto;
-background-color:#262626;
-padding: 30px;
-border-radius: 30px;
-box-shadow: 0px 0px 10px 5px rgba(0, 0, 0, 0.75);
-
+padding-left:10%;
+padding-right:10%;
+background: rgb(255, 255, 255, 0.1);
+border-radius: 5px;
+box-shadow: 0px 0px 10px 5px rgba(0, 0, 0, 0.45);
 
 img {
 width: 300px;
 }
 
 Form {
-display: flex;
+  display: flex;
 align-items: center;
 flex-direction: column;
+text-align: center;
 
 
 >h1 {

@@ -10,9 +10,11 @@ import { Input, Button, Login } from '../../shared/components';
 
 import { MdOutlineMailOutline } from 'react-icons/md';
 import { AiFillLock, AiOutlineArrowRight, AiOutlineArrowLeft } from 'react-icons/ai';
-
+import { Box, Divider } from '@mui/material';
 import { Container, Content, Loginstyle } from './styles';
 import logo from './../../assets/logo.png';
+import background from './../../assets/background.png';
+import display from 'material/src/view/display';
 
 const clientId = "949022787391-reo50io8kup6ec5gmcu2ss93phdb1v79.apps.googleusercontent.com";
 
@@ -71,24 +73,58 @@ export const SignIn = () => {
   }, [signIn, addToast, navigate]);
 
   return (
+
     <Container>
-      <Content>
-        <img src={logo} alt="planetMotorhome" />
-        <Form ref={formRef} onSubmit={handleSubmit}>
-          <h1>faça seu login</h1>
-          <Input name="email" type="email" placeholder="Digite seu email" icon={MdOutlineMailOutline} />
-          <Input name="password" type="password" placeholder="Digite sua senha" icon={AiFillLock} />
-          <Link to="/forgot-password">Esqueci minha senha</Link>
-          <Button type="submit">entrar <AiOutlineArrowRight size={12}></AiOutlineArrowRight></Button>
-          <Button type="button">
-            <AiOutlineArrowLeft size={12} style={{ marginRight: '5px' }}></AiOutlineArrowLeft>
-            <Link to="/sign-up" style={{ color: 'white' }}>faça seu cadastro</Link>
-          </Button>
-          <Loginstyle>
-            <Login />
-          </Loginstyle>
-        </Form>
-      </Content>
-    </Container>
+      <Box
+        sx={{
+          position: 'fixed',
+          display: 'flex',
+          zIndex: -1,
+          backgroundImage: `url(${background})`,
+          backgroundRepeat: 'no-repeat',
+          height: '100vh',
+          width: '100%',
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+          alignItems: 'center',
+          justifyContent: 'center',
+          filter: 'blur(2px)',
+        }}
+      />
+      <Box sx={{
+        display: 'flex',
+        width: '100%',
+        flexDirection: 'column',
+        alignItems: 'center',
+        justifyContent: 'center',
+        height: '100vh',
+        position: 'fixed',
+        margin: 'auto',
+
+      }}>
+        <Content>
+          <img src={logo} alt="planetMotorhome" />
+
+          <Form ref={formRef} onSubmit={handleSubmit}>
+            <h1 style={{
+              fontWeight: "bold",
+            }}>faça seu login</h1>
+            <Divider color='717339' width='80%' />
+            <br />
+            <Input name="email" type="email" placeholder="Digite seu email" icon={MdOutlineMailOutline} />
+            <Input name="password" type="password" placeholder="Digite sua senha" icon={AiFillLock} />
+            <Link to="/forgot-password" style={{ marginBottom: '10px', display: 'flex', justifyContent: 'flex-end' }}>Esqueci minha senha</Link>
+            <Button type="submit">entrar <AiOutlineArrowRight size={12}></AiOutlineArrowRight></Button>
+            <Link to="/sign-up" style={{ color: 'white', marginTop: '10px' }}>
+              <AiOutlineArrowLeft size={12} style={{ marginRight: '5px' }} />
+              faça seu cadastro
+            </Link>
+            <Loginstyle>
+              <Login />
+            </Loginstyle>
+          </Form>
+        </Content>
+      </Box>
+    </Container >
   );
 };

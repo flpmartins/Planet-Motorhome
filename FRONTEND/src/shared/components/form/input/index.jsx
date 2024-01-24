@@ -33,7 +33,9 @@ export const Input = ({ name, icon: Icon, ...rest }) => {
 
   return (
     <Container isFocused={isFocused} isFilled={isFilled} isErrored={!!error}>
-      {Icon && <Icon size={20} />}
+      {Icon && <Icon size={20} style={{
+        marginRight: '10px'
+      }} />}
       <input
         type="text"
         ref={inputRef}
@@ -41,12 +43,14 @@ export const Input = ({ name, icon: Icon, ...rest }) => {
         {...rest}
         onBlur={handleOnBlur}
         onFocus={handleOnFocus}
+
       />
 
 
       {error && (
         <Error title={error}>
-          <FiAlertCircle color={theme.error_title} size={20} />
+          <FiAlertCircle color={theme.error_title} size={20}
+          />
         </Error>
       )}
     </Container>

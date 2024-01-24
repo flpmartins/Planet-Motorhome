@@ -70,9 +70,9 @@ const resetPassword = async (params) => {
   return result.data
 }
 
-const updateUserData = async (userData) => {
+const updateUserData = async (users) => {
   try {
-    const result = await api.put(`/users/updated/${userData.id}`, userData)
+    const result = await api.put(`/users/updated/${users.id}`, users)
 
     return result.data
   } catch (error) {
@@ -83,6 +83,26 @@ const updateUserData = async (userData) => {
 const uploadImage = async (avatar) => {
   try {
     const result = await api.patch('users/avatar', avatar)
+
+    return result.data
+  } catch (error) {
+    throw new Error(error.message)
+  }
+}
+
+const getFactory = async (params) => {
+  try {
+    const result = await api.get('users/avatar', params)
+
+    return result.data
+  } catch (error) {
+    throw new Error(error.message)
+  }
+}
+
+const createFactory = async (params) => {
+  try {
+    const result = await api.post('factory/listAll', params)
 
     return result.data
   } catch (error) {

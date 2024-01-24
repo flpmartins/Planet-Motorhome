@@ -15,6 +15,7 @@ export const App = () => {
       <ThemeProvider theme={baseTheme}>
         <AppProvider>
           <GlobalStyles />
+
           <BrowserRouter>
             <AppRoutes />
           </BrowserRouter>

@@ -8,7 +8,8 @@ export const Container = styled.div`
   border-radius: 10px;
   border: 2px solid ${({ theme }) => theme.secondary_light};
   margin: 10px;
-  width: 270px;
+  width: 100%;
+  height:48px;
   color: ${({ theme }) => theme.text};
   align-items: center;
 

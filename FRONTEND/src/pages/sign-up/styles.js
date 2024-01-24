@@ -3,37 +3,51 @@ import styled from 'styled-components'
 export const Container = styled.div`
 height: 100vh;
 display: flex;
-align-items: stretch;
-background-color: #6C7339;
 `
 
 export const Content = styled.div`
 display:flex;
 align-items:center;
-flex-direction:row;
+flex-direction:row-reverse;
 margin:auto;
-background-color:#262626;
-padding: 80px;
-border-radius: 15px;
-box-shadow: 0px 0px 10px 5px rgba(0, 0, 0, 0.75);
+border-radius: 5px;
+background: rgb(255, 255, 255, 0.1);
+border-radius: 5px;
+box-shadow: 0px 0px 10px 5px rgba(0, 0, 0, 0.45);
 
 
 img {
-width: 400px;
-margin-right:60px;
+align-self: center;
+width: 200px;
 }
 
 Form {
 display: flex;
 flex-direction: column;
 margin:auto;
-padding: 30px;
-border:6px solid ${({ theme }) => theme.primary};
-border-radius: 15px;
-box-shadow: 0px 0px 10px 5px rgba(0, 0, 0, 0.30);
+padding: 0 150px 0 150px;
 justify-content: center;
 align-items: center;
+max-width: 600px;
+height: 90vh;
 
+@media screen and (max-width: 400px) {
+display:flex;
+flex-direction:column;
+margin:auto;
+justify-content: center;
+align-items: center;
+background: rgb(255, 255, 255, 0.1);
+border-radius: 5px;
+box-shadow: 0px 0px 10px 5px rgba(0, 0, 0, 0.45);
+  form {
+display: flex;
+margin:auto;
+justify-content: center;
+align-items: center;
+height: 90vh; 
+  }
+}
 >span {
   color: ${({ theme }) => theme.text};
   font-weight: 500;

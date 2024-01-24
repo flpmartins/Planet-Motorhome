@@ -14,8 +14,9 @@ import * as Yup from 'yup'
 
 import getValidationErrors from '../../shared/utils/getValidationErrors'
 
+import { Box, Divider } from '@mui/material'
 import logo from './../../assets/logo.png'
-
+import background from '../../assets/background.png'
 import { resetPassword } from '../../api/planet-motorhome-api'
 
 
@@ -81,22 +82,56 @@ export const ResetPassword = () => {
 
   return (
     <Container>
-      <Content>
-        <img src={logo} alt="planetMotorhome" />
+      <Box
+        sx={{
+          position: 'fixed',
+          display: 'flex',
+          zIndex: -1,
+          backgroundImage: `url(${background})`,
+          backgroundRepeat: 'no-repeat',
+          height: '100vh',
+          width: '100%',
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+          alignItems: 'center',
+          justifyContent: 'center',
+          filter: 'blur(2px)',
+        }}
+      />
+      <Box sx={{
+        display: 'flex',
+        width: '100%',
+        flexDirection: 'column',
+        alignItems: 'center',
+        justifyContent: 'center',
+        height: '100vh',
+        position: 'fixed',
+        margin: 'auto',
 
-        <Form ref={formRef} onSubmit={handleSubmit}>
+      }}>
+        <Content>
+          <img src={logo} alt="planetMotorhome" />
 
-          <h1>resete sua senha</h1>
-          <Input name="password" type={showPassword ? 'text' : 'password'}
-            placeholder="Digite sua senha" icon={AiFillLock} />
+          <Form ref={formRef} onSubmit={handleSubmit}>
 
-          <Input name="confirmPassword" type={showPassword ? 'text' : 'password'}
-            placeholder="confirme sua senha" icon={AiFillLock} />
-          <span onClick={handleShowPassword}>
-            mostrar senha</span>
-          <Button type="submit">entrar <AiOutlineArrowRight size={12}></AiOutlineArrowRight></Button>
-        </Form>
-      </Content>
+            <h1 style={{
+              fontWeight: "bold",
+            }}>resete sua senha</h1>
+            <br />
+            <Divider color='717339' width='80%' />
+            <br />
+            <Input name="password" type={showPassword ? 'text' : 'password'}
+              placeholder="Digite sua senha" icon={AiFillLock} />
+
+            <Input name="confirmPassword" type={showPassword ? 'text' : 'password'}
+              placeholder="confirme sua senha" icon={AiFillLock} />
+            <span onClick={handleShowPassword}>
+              mostrar senha</span>
+            <Button type="submit">resetar <AiOutlineArrowRight size={12}></AiOutlineArrowRight></Button>
+          </Form>
+          <br />
+        </Content>
+      </Box>
     </Container>
   )
 }

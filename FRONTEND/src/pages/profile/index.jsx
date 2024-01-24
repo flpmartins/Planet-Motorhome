@@ -12,7 +12,8 @@ import { useToast } from '../../shared/hooks/toast';
 import { useTheme } from 'styled-components';
 import { enviroments } from '../../shared/environments';
 import { uploadImage, updateUserData } from '../../api/planet-motorhome-api';
-
+import { Box, Divider } from '@mui/material'
+import background from '../../assets/background.png'
 import * as Yup from 'yup'
 
 import {
@@ -100,18 +101,15 @@ export const Profile = () => {
 
         const { data } = await uploadImage(formData)
 
-        console.log('Upload de imagem bem-sucedido:', data)
-
         updateUser(data)
         setPicture(data.avatar)
       } catch (error) {
-        console.error('Erro no upload da imagem:', error)
       }
     },
     [updateUser],
   )
   return (
-    <Container>
+    <Container >
       <Content>
         <FormContainer ref={formRef} onSubmit={handleSubmit} initialData={user}>
           <h1>Altere suas credenciais aqui!</h1>
@@ -121,7 +119,7 @@ export const Profile = () => {
           <h1>Altere sua senha aqui!</h1>
           <hr />
           <Input name="password" type="password" placeholder="Digite sua senha" icon={AiFillLock} />
-          <Input name="confirmPassword" type="password" placeholder="Confirme sua senha" icon={AiFillLock} />
+          <Input name="confirm_password" type="password" placeholder="Confirme sua senha" icon={AiFillLock} />
           <Button type="submit">Salvar informações</Button>
         </FormContainer>
         <ImageContainer>
@@ -133,7 +131,7 @@ export const Profile = () => {
             src={
               picture
                 ? `${enviroments.URL_API_PLANETMOTORHOME + '/files/' + picture}`
-                : `https://ui-avatars.com/api/?font-size=0.33&background=${theme.background.substring(
+                : `https://ui-avatars.com/api/?font-size=.33&background=717339&color=fff&=${theme.background.substring(
                   1,
                   theme.background.length,
                 )}&color=${theme.contrast.substring(
@@ -141,11 +139,14 @@ export const Profile = () => {
                   theme.contrast.length,
                 )}&name=${user.name}`
             }
-            alt={user.name}
+            style={{
+              backgroundColor: theme.background.substring(1, theme.background.length),
+              color: theme.contrast.substring(1, theme.contrast.length),
+            }}
           />
 
         </ImageContainer>
       </Content>
-    </Container>
+    </Container >
   );
 };
