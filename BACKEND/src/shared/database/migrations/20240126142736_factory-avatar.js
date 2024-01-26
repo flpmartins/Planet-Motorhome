@@ -17,3 +17,4 @@ exports.down = function (knex) {
     table.dropColumn('avatar')
   })
 }
+
