@@ -2,23 +2,25 @@ import styled from 'styled-components';
 import { Form } from '@unform/web';
 
 export const Container = styled.div`
-  width: 100%;
-  height: 100%;
-  background-repeat: no-repeat;
-  background-size: cover;
-  display: flex;
-  justify-content: center;
-  background: rgb(111, 111,111, 0.2);
-;
+height: 100%;
+width: 100%;
+justify-content: center;
+align-items: center;
 `;
 
 export const Content = styled.div`
+width: 100%;
+height: 100%;
 display: flex;
- align-items: center;
+justify-content: center;
+align-items: center;
 flex-direction: row;
 padding-left:4%;
 padding-right:4%;
 border-radius: 5px;
+background: rgb(111, 111,111, 0.2);
+padding-bottom:30px;
+
 `;
 
 export const Img = styled.img`

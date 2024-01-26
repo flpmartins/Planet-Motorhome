@@ -1,61 +1,38 @@
-import styled from 'styled-components'
+import styled from 'styled-components';
 
 export const Container = styled.div`
   grid-area: HE;
-  display: flex;
-  justify-content: space-between;
-  background: ${({ theme }) => theme.primary};
-  color:${({ theme }) => theme.contrast};
-  
-`
-export const ImageContainer = styled.div``
 
-export const Image = styled.img`
-  margin-top: 10px;
-  margin-left:10px;
-  width: 80px;
-  height: 80px;
-  cursor: pointer;
+  background: ${({ theme }) => theme.secondary};
+  border-bottom: 1px solid ${({ theme }) => theme.primary};
+`;
 
-  border-radius: 50%;
-  `
+export const Menu = styled.div`
+  margin-top: 20px;
+`;
 
-export const ActionsProfileContainer = styled.div`
-display: flex;
-align-items: center;
-flex-direction: column;
-margin: 40px;
+export const MenuItem = styled.div`
+  > button {
+    background: ${({ theme }) => theme.text2};
 
-> a {
-  color:${({ theme }) => theme.contrast};
+    svg {
+      color: ${({ theme }) => theme.primary};
 
-  &:active {
-    text-decoration: none;
-    color: inherit;
-  }
-}
+      font-size: 18px;
+    }
 
-transition: all 0.3s;
-
-  &:hover {
-  scale: 1.1;
-}
-
-`
-export const NavLinks = styled.div`
-  display: flex;
-  margin: auto;
-  gap: 150px;
-  
-  a {
-    text-decoration: none;
-    color: ${({ theme }) => theme.text};
-    font-size: 18px;
+    transition: all 0.3s;
 
     &:hover {
-      color: ${({ theme }) => theme.secondary};
-      transition: all 0.5s;
-      transform: scale(1.15);
+      transform: scale(1.05);
+    }
+
+    h1 {
+      color: ${({ theme }) => theme.primary_light};
+
+      font-size: 18px;
     }
   }
 `;
+
+

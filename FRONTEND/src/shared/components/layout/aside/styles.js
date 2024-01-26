@@ -3,7 +3,6 @@ import { List, ListItem as MUIListItem, Button, Divider } from '@material-ui/cor
 
 export const Container = styled.div`
   grid-area: AS;
-  background-color: #262626;
 `;
 
 export const Content = styled.div`
@@ -12,6 +11,7 @@ export const Content = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  background: #262626;
 `;
 
 export const CustomList = styled(List)`

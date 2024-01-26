@@ -109,6 +109,33 @@ const createFactory = async (params) => {
     throw new Error(error.message)
   }
 }
+const alterFactory = async (id, params) => {
+  try {
+    const result = await api.put(`factory/put/${id}`, params)
+
+    return result.data
+  } catch (error) {
+    throw new Error(error.message)
+  }
+}
+const viewFactory = async (id, params) => {
+  try {
+    const result = await api.post(`factory/list/${id}`, params)
+
+    return result.data
+  } catch (error) {
+    throw new Error(error.message)
+  }
+}
+const alterAvatarFactory = async (id, avatar) => {
+  try {
+    const result = await api.patch(`factory/${id}/avatar`, avatar)
+
+    return result.data
+  } catch (error) {
+    throw new Error(error.message)
+  }
+}
 
 export {
   signInLoign,
@@ -119,5 +146,8 @@ export {
   uploadImage,
   updateUserData,
   getFactory,
-  createFactory
+  createFactory,
+  alterAvatarFactory,
+  viewFactory,
+  alterFactory
 }

@@ -12,8 +12,6 @@ import { useToast } from '../../shared/hooks/toast';
 import { useTheme } from 'styled-components';
 import { enviroments } from '../../shared/environments';
 import { uploadImage, updateUserData } from '../../api/planet-motorhome-api';
-import { Box, Divider } from '@mui/material'
-import background from '../../assets/background.png'
 import * as Yup from 'yup'
 
 import {
