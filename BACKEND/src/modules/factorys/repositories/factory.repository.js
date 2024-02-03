@@ -44,6 +44,23 @@ module.exports = {
     }
   },
 
+  async factoryByEmail(email) {
+    try {
+      return connection('factory').where('email', email).first()
+    } catch (err) {
+      throw new AppError(err.message)
+    }
+  },
+
+  async factoryByName(name) {
+    try {
+      return connection('factory').where('name', name).first()
+    } catch (err) {
+      throw new AppError(err.message)
+    }
+  },
+
+
   async updateFactory(payload) {
     try {
       const { id, ...updateData } = payload;

@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import { Form } from '@unform/web';
 
 export const Container = styled.div`
-height: 100%;
+height: 85vh;
 width: 100%;
 justify-content: center;
 align-items: center;

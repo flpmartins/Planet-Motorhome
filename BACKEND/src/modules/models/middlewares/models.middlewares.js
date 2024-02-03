@@ -14,7 +14,6 @@ module.exports = {
         models: Joi.string().required(),
         size: Joi.string().allow(null, ''),
         year: Joi.string().required(),
-        factory_id: Joi.number().required(),
       },
     })
   },

@@ -3,7 +3,7 @@ const { Router } = require('express')
 const userRouters = require('../../../modules/users/infra/routes/user.routes')
 const loginRouter = require('../../../modules/users/infra/routes/login.routes')
 const factoryRoutes = require('../../../modules/factorys/infra/routes/factory.routes')
-const modelsRoutes = require('../../../modules/models/infra/routes/user.models.routes')
+const modelsRoutes = require('../../../modules/models/infra/routes/models.routes')
 const ensureAuthenticated = require('../../middlewares/ensure-autenticated')
 
 const routes = Router()

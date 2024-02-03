@@ -1,5 +1,3 @@
-// Factorys.jsx
-
 import React, { useState, useEffect, useCallback } from 'react';
 import { TableContainer, Table, TableBody, TableCell, TableHead, TableRow } from '@mui/material';
 import { FiEdit, FiEye } from 'react-icons/fi';

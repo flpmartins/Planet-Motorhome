@@ -1,25 +1,26 @@
-const AppError = require('../../../shared/AppError')
-
+const AppError = require('../../../shared/AppError');
 
 class CreateModelService {
   constructor(modelRepository, factoryRepository) {
-    this.modelRepository = modelRepository
-    this.factoryRepository = factoryRepository
+    this.modelRepository = modelRepository;
+    this.factoryRepository = factoryRepository;
   }
 
-  async execute(payload) {
-    const { factory_id } = payload
+  async execute(payload, currentUser) {
+    const { factory_id } = payload;
 
-    const factoryExistis = await this.factoryRepository.listFactory(factory_id)
+    try {
+      const factory = await this.factoryRepository.listFactory(factory_id);
 
-    if (!factoryExistis) {
-      throw new AppError('factory not found')
+      if (!factory || factory.user_id !== currentUser.id) {
+        throw new AppError('Você não tem permissão para criar modelos para esta fábrica.');
+      }
+
+      return this.modelRepository.createModels(payload);
+    } catch (error) {
+      throw new AppError(error.message);
     }
-
-    return this.modelRepository.createModels(payload)
-
   }
 }
 
-
-module.exports = CreateModelService
+module.exports = CreateModelService;

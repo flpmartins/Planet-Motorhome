@@ -4,7 +4,7 @@ class ListFactoryService {
   }
 
   async execute(id) {
-  return this.factoryRepository.listFactory(id)
+    return this.factoryRepository.listFactory(id)
   }
 }
 
