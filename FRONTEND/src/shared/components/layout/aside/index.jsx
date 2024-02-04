@@ -54,21 +54,17 @@ export const Aside = () => {
     <Container>
       <Drawer anchor="left" open={isDrawerOpen} onClose={() => toggleDrawerOpen(false)}>
         <Content>
-          <Img src={
-            picture
-              ? `${enviroments.URL_API_PLANETMOTORHOME + '/files/' + picture}`
-              : `https://ui-avatars.com/api/?font-size=.33&background=717339&color=fff&=${theme.background.substring(
-                1,
-                theme.background.length,
-              )}&color=${theme.contrast.substring(
-                1,
-                theme.contrast.length,
-              )}&name=${user.name}`
-          }
+          <Img
+            src={
+              picture
+                ? `${enviroments.URL_API_PLANETMOTORHOME + '/files/' + picture}`
+                : `https://ui-avatars.com/api/?font-size=0.33&background=717339&color=fff&name=${encodeURIComponent(user.name)}`
+            }
             style={{
-              background: theme.background.substring(1, theme.background.length),
+              backgroundColor: theme.background.substring(1, theme.background.length),
               color: theme.contrast.substring(1, theme.contrast.length),
-            }} alt="" />
+            }}
+          />
           <br />
           <ActionsProfileContainer>
             <strong style={{

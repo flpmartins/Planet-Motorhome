@@ -129,13 +129,7 @@ export const Profile = () => {
             src={
               picture
                 ? `${enviroments.URL_API_PLANETMOTORHOME + '/files/' + picture}`
-                : `https://ui-avatars.com/api/?font-size=.33&background=717339&color=fff&=${theme.background.substring(
-                  1,
-                  theme.background.length,
-                )}&color=${theme.contrast.substring(
-                  1,
-                  theme.contrast.length,
-                )}&name=${user.name}`
+                : `https://ui-avatars.com/api/?font-size=0.33&background=717339&color=fff&name=${encodeURIComponent(user.name)}`
             }
             style={{
               backgroundColor: theme.background.substring(1, theme.background.length),
