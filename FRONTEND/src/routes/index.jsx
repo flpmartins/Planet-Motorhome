@@ -12,7 +12,8 @@ import {
   Factorys,
   Models,
   Campings,
-  ListFactorys
+  ListFactorys,
+  ListModels
 } from '../pages'
 
 export const AppRoutes = () => {
@@ -53,7 +54,7 @@ export const AppRoutes = () => {
           }
         />
         <Route
-          path="/models"
+          path="/models/:factoryId"
           element={
             <Layout>
               <Models />
@@ -65,6 +66,14 @@ export const AppRoutes = () => {
           element={
             <Layout>
               <Campings />
+            </Layout>
+          }
+        />
+        <Route
+          path="/models/:userId"
+          element={
+            <Layout>
+              <ListModels />
             </Layout>
           }
         />

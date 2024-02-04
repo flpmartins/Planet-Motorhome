@@ -46,11 +46,6 @@ export const Factorys = () => {
     }
   }, []);
 
-  const handleEditFactory = (factory) => {
-    setSelectedFactory(factory);
-    setEditModalOpen(true);
-  };
-
   useEffect(() => {
     getAllFactories();
   }, [getAllFactories, refresh]);

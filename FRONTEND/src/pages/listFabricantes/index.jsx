@@ -9,15 +9,13 @@ import {
   Divider,
   Typography
 } from '@mui/material';
-import { FiEdit, FiEye } from 'react-icons/fi';
+import { FiEye } from 'react-icons/fi';
 import { BaseLayout } from '../../shared/layouts/baseLayouts';
-import { ListToolbar } from '../../shared/components/ListToolbar';
 import { getFactory } from '../../api/planet-motorhome-api';
 import { enviroments } from '../../shared/environments';
 import { useNavigate } from 'react-router-dom'
 import { Container, ActionsButton, ImageFactory } from './styles';
 import { ViewFactoryModal } from '../../shared/components/modal-factory/ViewFactoryModal';
-import { UpdateFactoryModal } from '../../shared/components/modal-factory/UpdateFactoryModal';
 
 export const ListFactorys = () => {
   const navigate = useNavigate();
@@ -25,11 +23,7 @@ export const ListFactorys = () => {
   const [refresh, setRefresh] = useState(false);
   const [selectedFactory, setSelectedFactory] = useState(null);
   const [viewModalOpen, setViewModalOpen] = useState(false);
-  const [isEditModalOpen, setEditModalOpen] = useState(false);
-
-  const handleSearch = useCallback(() => {
-    console.log('FACTORIES - handleSearch');
-  }, []);
+  const [setEditModalOpen] = useState(false);
 
   const handleDetails = useCallback((id, option) => {
     if (option === 4) {
@@ -43,7 +37,7 @@ export const ListFactorys = () => {
     } else {
       navigate(`/factory/details/${id}`, { state: { option } });
     }
-  }, [navigate, factories]);
+  }, [navigate, factories, setEditModalOpen]);
 
   const getAllFactories = useCallback(async () => {
     try {
@@ -51,14 +45,9 @@ export const ListFactorys = () => {
       setFactories(result.data);
       setRefresh(false);
     } catch (error) {
-      console.error('Erro ao obter a lista de fábricas:', error.message);
     }
   }, []);
 
-  const handleEditFactory = (factory) => {
-    setSelectedFactory(factory);
-    setEditModalOpen(true);
-  };
 
   useEffect(() => {
     getAllFactories();
@@ -103,8 +92,8 @@ export const ListFactorys = () => {
                       style={{
                         backgroundColor: '#717339',
                         color: '#fff',
-                        width: '50px',
-                        height: '50px',
+                        width: '100px',
+                        height: '100px',
                         borderRadius: '50%',
                       }}
                     />
@@ -121,14 +110,6 @@ export const ListFactorys = () => {
           open={viewModalOpen}
           handleClose={() => setViewModalOpen(false)}
           factoryInfo={selectedFactory}
-        />
-        <UpdateFactoryModal
-          open={isEditModalOpen}
-          handleClose={() => setEditModalOpen(false)}
-          factory={selectedFactory}
-          handleUpdateFactory={(updatedFactory) => {
-            setEditModalOpen(false);
-          }}
         />
       </Container>
     </BaseLayout >

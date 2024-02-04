@@ -1,8 +1,15 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import { Modal, Box, Typography, Button } from '@mui/material';
+import { useNavigate } from 'react-router-dom';
 
 export const ViewFactoryModal = ({ open, handleClose, factoryInfo }) => {
+  const navigate = useNavigate();
+
+  const handleModelsButtonClick = () => {
+    // Navegue para a página de modelos com o id da fábrica como parâmetro
+    navigate(`/models/${factoryInfo.id}`);
+  };
+
   if (!factoryInfo) {
     return null;
   }
@@ -25,7 +32,7 @@ export const ViewFactoryModal = ({ open, handleClose, factoryInfo }) => {
           marginBottom: '20px',
         }}>
           Informações da Fábrica
-        </Typography >
+        </Typography>
         <Typography mb={2} sx={{
           marginBottom: '20px',
         }}>
@@ -44,23 +51,22 @@ export const ViewFactoryModal = ({ open, handleClose, factoryInfo }) => {
         <Typography mb={2} sx={{
           marginBottom: '20px',
         }}>
-          <strong>email:</strong> {factoryInfo.email}
+          <strong>Email:</strong> {factoryInfo.email}
         </Typography>
-        <Link to="/models">
-          <Button
-            variant="contained"
-            sx={{
+        <Button
+          variant="contained"
+          onClick={handleModelsButtonClick}
+          sx={{
+            background: "#717339",
+            width: "100%",
+            marginBottom: '20px',
+            "&:hover": {
               background: "#717339",
-              width: "100%",
-              marginBottom: '20px',
-              "&:hover": {
-                background: "#717339",
-              },
-            }}
-          >
-            Conheça nossos modelos
-          </Button>
-        </Link>
+            },
+          }}
+        >
+          Conheça nossos modelos
+        </Button>
         <Button
           variant="contained"
           onClick={handleClose}

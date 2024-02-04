@@ -147,6 +147,46 @@ const alterAvatarFactory = async (id, avatar) => {
   }
 }
 
+const createModels = async (params) => {
+  try {
+    const result = await api.post('models', params)
+
+    return result.data
+  } catch (error) {
+    throw new Error(error.message)
+  }
+}
+
+const listAllModels = async (id, params) => {
+  try {
+    const result = await api.get(`models/listAll/${id}`, params)
+
+    return result.data
+  } catch (error) {
+    throw new Error(error.message)
+  }
+}
+
+const listModel = async (id, params) => {
+  try {
+    const result = await api.get(`models/list/${id}`, params)
+
+    return result.data
+  } catch (error) {
+    throw new Error(error.message)
+  }
+}
+
+const listModelByUser = async (id, params) => {
+  try {
+    const result = await api.get(`models/list/${id}`, params)
+
+    return result.data
+  } catch (error) {
+    throw new Error(error.message)
+  }
+}
+
 export {
   signInLoign,
   signInLoginSocial,
@@ -161,4 +201,8 @@ export {
   viewFactory,
   alterFactory,
   getFactoryByUser,
+  createModels,
+  listAllModels,
+  listModel,
+  listModelByUser
 }
