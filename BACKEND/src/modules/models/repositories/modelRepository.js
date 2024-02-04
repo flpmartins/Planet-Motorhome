@@ -51,4 +51,14 @@ module.exports = {
     }
   },
 
+  async listAllModelsByUser(userId) {
+    try {
+      return connection('models')
+        .join('factory', 'models.factory_id', '=', 'factory.id')
+        .where('factory.user_id', '=', userId)
+        .select('models.*');
+    } catch (err) {
+      throw new AppError(err.message);
+    }
+  }
 }

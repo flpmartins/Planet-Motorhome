@@ -4,7 +4,7 @@ const ListAllFactoryService = require('../../services/ListAllfactorysService')
 const DeleteFactoryService = require('../../services/DeleteFactoryService')
 const UpdateFactoryService = require('../../services/UpdateFactoryService')
 const UpdateFactoryPictureService = require('../../services/UpdateFactoryPictureService')
-
+const ListAllFactoryByUserService = require('../../services/ListAllfactorysServiceByUser')
 const factoryRepository = require('../../repositories/factory.repository')
 
 module.exports = {
@@ -41,6 +41,22 @@ module.exports = {
     const factorys = await listAllFactory.execute()
 
     return response.json({ data: factorys })
+  },
+
+  async factoryListAllByUser(request, response) {
+    try {
+      const { id } = request.params
+
+      const currentUser = request.user;
+
+      const listAllFactory = new ListAllFactoryByUserService(factoryRepository)
+
+      const factories = await factoryRepository.listAllFactorysByUser(currentUser.id)
+
+      return response.json({ data: factories })
+    } catch (error) {
+      return response.status(500).json({ error: error.message })
+    }
   },
 
   async factoryDeleted(request, response) {

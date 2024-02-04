@@ -1,6 +1,7 @@
 const CreateModelService = require('../../services/CreateModelService')
-const ListModelsService = require('../../services/ListAllfactorysService')
-const ListModelService = require('../../services/ListFactoryService')
+const ListModelsService = require('../../services/ListAllModelsService')
+const ListModelService = require('../../services/ListModelService')
+const ListAllModelsByUserService = require('../../services/ListAllModelsServiceByUser')
 
 const modelRepository = require("../../repositories/modelRepository")
 const factoryRepository = require('../../../factorys/repositories/factory.repository')
@@ -36,6 +37,7 @@ module.exports = {
   },
 
   async listModel(request, response) {
+
     const { id } = request.params
 
     const listModels = new ListModelService(modelRepository)
@@ -46,6 +48,7 @@ module.exports = {
   },
 
   async listModels(request, response) {
+
     const { id } = request.params;
 
     const listModelsService = new ListModelsService(modelRepository);
@@ -55,6 +58,22 @@ module.exports = {
       return response.json({ data: models });
     } catch (error) {
       return response.status(400).json({ error: error.message });
+    }
+  },
+
+  async listModelsByUsers(request, response) {
+    try {
+      const { id } = request.params
+
+      const currentUser = request.user
+
+      const listModelsService = new ListAllModelsByUserService(modelRepository);
+
+      const models = await modelRepository.listAllModelsByUser(currentUser.id);
+
+      return response.json({ data: models });
+    } catch (error) {
+      return response.status(500).json({ error: error.message });
     }
   },
 

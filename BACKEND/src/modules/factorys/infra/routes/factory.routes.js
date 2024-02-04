@@ -12,7 +12,9 @@ const {
   factoryList,
   factoryListAll,
   factoryUpdate,
-  updateFactoryPicture
+  updateFactoryPicture,
+  factoryListAllByUser,
+
 } = require('../controllers/factory.controllers')
 
 const { verifyFactoryIdInParams, verifyFactoryForCreation, putFactory } = require('../../middlewares/factory.middlewares')
@@ -28,6 +30,8 @@ factoryRoutes.get('/listAll', factoryListAll)
 factoryRoutes.delete('/delete/:id', verifyFactoryIdInParams(), factoryDeleted)
 
 factoryRoutes.put('/put/:id', putFactory(), factoryUpdate)
+
+factoryRoutes.get('/lists', factoryListAllByUser)
 
 factoryRoutes.patch('/:id/avatar', putFactory(), upload.single('avatar'), updateFactoryPicture)
 

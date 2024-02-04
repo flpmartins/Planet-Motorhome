@@ -35,6 +35,16 @@ module.exports = {
       throw new AppError(err.message)
     }
   },
+  async listAllFactorysByUser(userId) {
+    try {
+      const factory = await connection('factory')
+        .where({ user_id: userId })
+        .select('*');
+      return factory;
+    } catch (err) {
+      throw new AppError(err.message)
+    }
+  },
 
   async deleteFactory(id) {
     try {
@@ -51,6 +61,7 @@ module.exports = {
       throw new AppError(err.message)
     }
   },
+
 
   async factoryByName(name) {
     try {
