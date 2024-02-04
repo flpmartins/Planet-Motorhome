@@ -177,10 +177,10 @@ const listModel = async (id, params) => {
   }
 }
 
-const listModelByUser = async (id, params) => {
+const listModelByUser = async (userId) => {
   try {
-    const result = await api.get(`models/list/${id}`, params)
-
+    const result = await api.get(`models/listAllModels/${userId}`)
+    console.log(result)
     return result.data
   } catch (error) {
     throw new Error(error.message)

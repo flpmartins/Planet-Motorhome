@@ -1,19 +1,20 @@
 import React, { useEffect, useState } from 'react';
 import { TableContainer, Table, TableBody, TableCell, TableHead, TableRow, Typography, Divider } from '@mui/material';
 import { useParams } from 'react-router-dom';
-import { listAllModels } from '../../api/planet-motorhome-api';
+import { listModelByUser } from '../../api/planet-motorhome-api';
 import { BaseLayout } from '../../shared/layouts/baseLayouts';
 
-export const ListModels = () => {
+export const ListModelsByUser = () => {
   const { userId } = useParams();
   const [models, setModels] = useState([]);
 
   useEffect(() => {
     const fetchModels = async () => {
       try {
-        const modelsData = await listAllModels(userId);
+        const modelsData = await listModelByUser(userId);
         setModels(modelsData.data);
       } catch (error) {
+        console.error('Error fetching models:', error.message);
       }
     };
 
@@ -27,7 +28,7 @@ export const ListModels = () => {
   return (
     <BaseLayout>
       <br />
-      <Typography variant='h4' style={{ color: '#717339' }}>MODELOS</Typography>
+      <Typography variant='h4' style={{ color: '#717339' }}>MEUS MODELOS</Typography>
       <br />
       <Divider />
       <TableContainer>
@@ -37,12 +38,11 @@ export const ListModels = () => {
               <TableCell align="center" style={{ color: '#262626', fontWeight: 'bold' }}>Modelo</TableCell>
               <TableCell align="center" style={{ color: '#262626', fontWeight: 'bold' }}>Tamanho</TableCell>
               <TableCell align="center" style={{ color: '#262626', fontWeight: 'bold' }}>Ano</TableCell>
-              <TableCell align="center" style={{ color: '#262626', fontWeight: 'bold' }}>ID</TableCell>
-
+              <TableCell align="center" style={{ color: '#262626', fontWeight: 'bold' }}>ID FABRICANTE</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
-            {models.map((model) => (
+            {Array.isArray(models) && models.map((model) => (
               <TableRow key={model.id}>
                 <TableCell align="center">{model.models}</TableCell>
                 <TableCell align="center">{model.size}</TableCell>

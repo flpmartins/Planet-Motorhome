@@ -66,22 +66,16 @@ export const ListFactorys = () => {
           <Table sx={{ minWidth: '80%' }} aria-label="simple table">
             <TableHead>
               <TableRow>
-                <TableCell style={{ color: '#262626', fontWeight: 'bold' }}>Ações</TableCell>
-                <TableCell align="center" style={{ color: '#262626', fontWeight: 'bold' }}>Imagem</TableCell>
+                <TableCell align="center" style={{ color: '#262626', fontWeight: 'bold' }}>Avatar</TableCell>
                 <TableCell align="center" style={{ color: '#262626', fontWeight: 'bold' }}>Nome</TableCell>
                 <TableCell align="center" style={{ color: '#262626', fontWeight: 'bold' }}>Cidade</TableCell>
+                <TableCell style={{ color: '#262626', fontWeight: 'bold', position: 'end' }}>Ações</TableCell>
               </TableRow>
             </TableHead>
             <TableBody>
               {factories.map((factory) => (
                 <TableRow key={factory.id}>
-                  <TableCell align="left">
-                    <ActionsButton>
-                      <button type="button" onClick={() => handleDetails(factory.id, 4)}>
-                        <FiEye />
-                      </button>
-                    </ActionsButton>
-                  </TableCell>
+
                   <TableCell align="center">
                     <ImageFactory
                       src={
@@ -100,6 +94,13 @@ export const ListFactorys = () => {
                   </TableCell>
                   <TableCell align="center">{factory.name}</TableCell>
                   <TableCell align="center">{factory.city}</TableCell>
+                  <TableCell align="left">
+                    <ActionsButton>
+                      <button type="button" onClick={() => handleDetails(factory.id, 4)}>
+                        <FiEye />
+                      </button>
+                    </ActionsButton>
+                  </TableCell>
                 </TableRow>
               ))}
             </TableBody>

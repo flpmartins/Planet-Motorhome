@@ -29,7 +29,7 @@ export const Models = () => {
   return (
     <BaseLayout>
       <br />
-      <Typography variant='h4' style={{ color: '#717339' }}>MODELOS</Typography>
+      <Typography variant='h4' style={{ color: '#717339' }}>MODELOS DA FABRICANTE</Typography>
       <br />
       <Divider />
       <TableContainer>
@@ -39,7 +39,7 @@ export const Models = () => {
               <TableCell align="center" style={{ color: '#262626', fontWeight: 'bold' }}>Modelo</TableCell>
               <TableCell align="center" style={{ color: '#262626', fontWeight: 'bold' }}>Tamanho</TableCell>
               <TableCell align="center" style={{ color: '#262626', fontWeight: 'bold' }}>Ano</TableCell>
-              <TableCell align="center" style={{ color: '#262626', fontWeight: 'bold' }}>ID</TableCell>
+              <TableCell align="center" style={{ color: '#262626', fontWeight: 'bold' }}>ID FABRICANTE</TableCell>
 
             </TableRow>
           </TableHead>

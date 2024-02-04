@@ -60,25 +60,15 @@ export const Factorys = () => {
           <Table sx={{ minWidth: '80%' }} aria-label="simple table">
             <TableHead>
               <TableRow>
-                <TableCell style={{ color: '#262626', fontWeight: 'bold' }}>Ações</TableCell>
                 <TableCell align="center" style={{ color: '#262626', fontWeight: 'bold' }}>Imagem</TableCell>
                 <TableCell align="center" style={{ color: '#262626', fontWeight: 'bold' }}>Nome</TableCell>
                 <TableCell align="center" style={{ color: '#262626', fontWeight: 'bold' }}>Cidade</TableCell>
+                <TableCell style={{ color: '#262626', fontWeight: 'bold' }}>Ações</TableCell>
               </TableRow>
             </TableHead>
             <TableBody>
               {factories.map((factory) => (
                 <TableRow key={factory.id}>
-                  <TableCell align="left">
-                    <ActionsButton>
-                      <button type="button" onClick={() => handleDetails(factory.id, 2)}>
-                        <FiEdit />
-                      </button>
-                      <button type="button" onClick={() => handleDetails(factory.id, 4)}>
-                        <FiEye />
-                      </button>
-                    </ActionsButton>
-                  </TableCell>
                   <TableCell align="center">
                     <ImageFactory
                       src={
@@ -89,14 +79,24 @@ export const Factorys = () => {
                       style={{
                         backgroundColor: '#717339',
                         color: '#fff',
-                        width: '50px',
-                        height: '50px',
+                        width: '100px',
+                        height: '100px',
                         borderRadius: '50%',
                       }}
                     />
                   </TableCell>
                   <TableCell align="center">{factory.name}</TableCell>
                   <TableCell align="center">{factory.city}</TableCell>
+                  <TableCell align="left">
+                    <ActionsButton>
+                      <button type="button" onClick={() => handleDetails(factory.id, 2)}>
+                        <FiEdit />
+                      </button>
+                      <button type="button" onClick={() => handleDetails(factory.id, 4)}>
+                        <FiEye />
+                      </button>
+                    </ActionsButton>
+                  </TableCell>
                 </TableRow>
               ))}
             </TableBody>

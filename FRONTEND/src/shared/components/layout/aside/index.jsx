@@ -21,6 +21,7 @@ export const Aside = () => {
 
   const { signOut } = useAuth();
   const theme = useTheme()
+  const userId = user.id
   const [picture, setPicture] = useState(() => {
     const appData = JSON.parse(localStorage.getItem(enviroments.APP_NAME))
 
@@ -45,7 +46,7 @@ export const Aside = () => {
   const menuItems = [
     { icon: <FaHome style={{ fontSize: '28px', color: '#717339', fontWeight: 'bold' }} />, text: 'INÍCIO', path: '/home' },
     { icon: <MdFactory style={{ fontSize: '28px', color: '#717339', fontWeight: 'bold' }} />, text: 'FABRICANTES', path: '/list/factory' },
-    { icon: <FaTrailer style={{ fontSize: '28px', color: '#717339', fontWeight: 'bold' }} />, text: 'MEUS MODELOS', path: '/models/:id' },
+    { icon: <FaTrailer style={{ fontSize: '28px', color: '#717339', fontWeight: 'bold' }} />, text: 'MEUS MODELOS', path: `/myModels/${userId}` },
     { icon: <MdFactory style={{ fontSize: '28px', color: '#717339', fontWeight: 'bold' }} />, text: 'MEUS FABRICANTES', path: '/factory' },
   ];
 

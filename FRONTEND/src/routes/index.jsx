@@ -13,7 +13,7 @@ import {
   Models,
   Campings,
   ListFactorys,
-  ListModels
+  ListModelsByUser
 } from '../pages'
 
 export const AppRoutes = () => {
@@ -70,10 +70,10 @@ export const AppRoutes = () => {
           }
         />
         <Route
-          path="/models/:userId"
+          path="/myModels/:userId"
           element={
             <Layout>
-              <ListModels />
+              <ListModelsByUser />
             </Layout>
           }
         />
