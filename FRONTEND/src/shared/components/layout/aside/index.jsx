@@ -43,9 +43,10 @@ export const Aside = () => {
     })
   }, [user.avatar])
   const menuItems = [
-    { icon: <FaHome style={{ fontSize: '28px', color: '#717339' }} />, text: 'Início', path: '/home' },
-    { icon: <MdFactory style={{ fontSize: '28px', color: '#717339' }} />, text: 'Fabricantes', path: '/factory' },
-    { icon: <FaTrailer style={{ fontSize: '28px', color: '#717339' }} />, text: 'Modelos', path: '/models' },
+    { icon: <FaHome style={{ fontSize: '28px', color: '#717339', fontWeight: 'bold' }} />, text: 'INÍCIO', path: '/home' },
+    { icon: <MdFactory style={{ fontSize: '28px', color: '#717339', fontWeight: 'bold' }} />, text: 'FABRICANTES', path: '/list/factory' },
+    { icon: <FaTrailer style={{ fontSize: '28px', color: '#717339', fontWeight: 'bold' }} />, text: 'MEUS MODELOS', path: '/models' },
+    { icon: <MdFactory style={{ fontSize: '28px', color: '#717339', fontWeight: 'bold' }} />, text: 'MEUS FABRICANTES', path: '/factory' },
   ];
 
   return (

@@ -99,6 +99,16 @@ const getFactory = async () => {
     throw new Error(error.message)
   }
 }
+const getFactoryByUser = async () => {
+  try {
+    const result = await api.get('factory/lists')
+
+    return result.data
+  } catch (error) {
+    throw new Error(error.message)
+  }
+}
+
 
 const createFactory = async (params) => {
   try {
@@ -149,5 +159,6 @@ export {
   createFactory,
   alterAvatarFactory,
   viewFactory,
-  alterFactory
+  alterFactory,
+  getFactoryByUser,
 }

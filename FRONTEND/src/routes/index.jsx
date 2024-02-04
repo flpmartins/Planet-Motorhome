@@ -12,6 +12,7 @@ import {
   Factorys,
   Models,
   Campings,
+  ListFactorys
 } from '../pages'
 
 export const AppRoutes = () => {
@@ -40,6 +41,14 @@ export const AppRoutes = () => {
           element={
             <Layout>
               <Factorys />
+            </Layout>
+          }
+        />
+        <Route
+          path="/list/factory"
+          element={
+            <Layout>
+              <ListFactorys />
             </Layout>
           }
         />

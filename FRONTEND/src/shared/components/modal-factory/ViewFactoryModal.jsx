@@ -1,11 +1,9 @@
-// ViewFactoryModal.jsx
-
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { Modal, Box, Typography, Button } from '@mui/material';
 
 export const ViewFactoryModal = ({ open, handleClose, factoryInfo }) => {
   if (!factoryInfo) {
-    // Adicione esta verificação para evitar erros caso factoryInfo seja undefined
     return null;
   }
 
@@ -48,15 +46,30 @@ export const ViewFactoryModal = ({ open, handleClose, factoryInfo }) => {
         }}>
           <strong>email:</strong> {factoryInfo.email}
         </Typography>
+        <Link to="/models">
+          <Button
+            variant="contained"
+            sx={{
+              background: "#717339",
+              width: "100%",
+              marginBottom: '20px',
+              "&:hover": {
+                background: "#717339",
+              },
+            }}
+          >
+            Conheça nossos modelos
+          </Button>
+        </Link>
         <Button
           variant="contained"
           onClick={handleClose}
           sx={{
-            background: "#717339",
+            background: "#c53030",
             width: "100%",
             marginBottom: '20px',
             "&:hover": {
-              background: "#717339",
+              background: "#c53030",
             },
           }}
         >

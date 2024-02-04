@@ -1,16 +1,25 @@
 import React, { useState, useEffect, useCallback } from 'react';
-import { TableContainer, Table, TableBody, TableCell, TableHead, TableRow } from '@mui/material';
+import {
+  TableContainer,
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableRow,
+  Divider,
+  Typography
+} from '@mui/material';
 import { FiEdit, FiEye } from 'react-icons/fi';
 import { BaseLayout } from '../../shared/layouts/baseLayouts';
 import { ListToolbar } from '../../shared/components/ListToolbar';
-import { getFactoryByUser } from '../../api/planet-motorhome-api';
+import { getFactory } from '../../api/planet-motorhome-api';
 import { enviroments } from '../../shared/environments';
 import { useNavigate } from 'react-router-dom'
 import { Container, ActionsButton, ImageFactory } from './styles';
 import { ViewFactoryModal } from '../../shared/components/modal-factory/ViewFactoryModal';
 import { UpdateFactoryModal } from '../../shared/components/modal-factory/UpdateFactoryModal';
 
-export const Factorys = () => {
+export const ListFactorys = () => {
   const navigate = useNavigate();
   const [factories, setFactories] = useState([]);
   const [refresh, setRefresh] = useState(false);
@@ -38,7 +47,7 @@ export const Factorys = () => {
 
   const getAllFactories = useCallback(async () => {
     try {
-      const result = await getFactoryByUser();
+      const result = await getFactory();
       setFactories(result.data);
       setRefresh(false);
     } catch (error) {
@@ -58,9 +67,12 @@ export const Factorys = () => {
   return (
     <BaseLayout
       title="Lista de Fábricas"
-      toolbar={<ListToolbar handleSearch={handleSearch} />}
     >
       <Container>
+        <br />
+        <Typography variant='h4' style={{ color: '#717339' }}>NOSSAS FABRICANTES</Typography>
+        <br />
+        <Divider />
         <TableContainer>
           <Table sx={{ minWidth: '80%' }} aria-label="simple table">
             <TableHead>
@@ -76,9 +88,6 @@ export const Factorys = () => {
                 <TableRow key={factory.id}>
                   <TableCell align="left">
                     <ActionsButton>
-                      <button type="button" onClick={() => handleDetails(factory.id, 2)}>
-                        <FiEdit />
-                      </button>
                       <button type="button" onClick={() => handleDetails(factory.id, 4)}>
                         <FiEye />
                       </button>
@@ -122,7 +131,7 @@ export const Factorys = () => {
           }}
         />
       </Container>
-    </BaseLayout>
+    </BaseLayout >
 
   );
 };

@@ -109,13 +109,15 @@ export const UpdateFactoryModal = ({ open, handleClose, factory, handleUpdateFac
           src={getAvatarSrc()}
           alt="Avatar"
           sx={{
-            width: 100,
-            height: 100,
+            width: 200,
+            height: 200,
             fontSize: 40,
             backgroundColor: '#717339',
             cursor: 'pointer',
             marginBottom: '20px',
             position: 'relative',
+            marginLeft: 'auto',
+            marginRight: 'auto'
           }}
           onClick={() => document.getElementById('avatarInput').click()}
         >
@@ -205,6 +207,20 @@ export const UpdateFactoryModal = ({ open, handleClose, factory, handleUpdateFac
           }}
         >
           Atualizar
+        </Button>
+        <Button
+          variant="contained"
+          onClick={handleClose}
+          sx={{
+            background: "#c53030",
+            width: "100%",
+            marginBottom: '20px',
+            "&:hover": {
+              background: "#c53030",
+            },
+          }}
+        >
+          Fechar
         </Button>
       </Box>
     </Modal>

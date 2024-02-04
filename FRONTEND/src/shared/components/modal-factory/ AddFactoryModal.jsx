@@ -40,7 +40,7 @@ export const AddFactoryModal = ({ open, handleClose }) => {
       <Box
         sx={{
           position: 'absolute',
-          padding: '30px',
+          padding: '25px',
           top: '50%',
           left: '50%',
           transform: 'translate(-50%, -50%)',
@@ -108,6 +108,20 @@ export const AddFactoryModal = ({ open, handleClose }) => {
           }}
         >
           Adicionar
+        </Button>
+        <Button
+          variant="contained"
+          onClick={handleClose}
+          sx={{
+            background: "#c53030",
+            width: "100%",
+            marginBottom: '20px',
+            "&:hover": {
+              background: "#c53030",
+            },
+          }}
+        >
+          Fechar
         </Button>
       </Box>
     </Modal>
