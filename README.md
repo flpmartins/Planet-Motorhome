@@ -18,7 +18,7 @@ O Planet Motorhome é uma plataforma centralizada para entusiastas de motorhomes
 
 ## Como Iniciar o Projeto
 
-1. Clone o repositório: `git clone https://github.com/seu-usuario/Planet-Motorhome.git`
+1. Clone o repositório: `git clone https://github.com/flpmartins/Planet-Motorhome.git`
 2. Instale as dependências: `npm install` ou `yarn install`
 3. Configure as variáveis de ambiente, incluindo as chaves de API do Google.
 4. Inicie o servidor: `npm start` ou `yarn start`
