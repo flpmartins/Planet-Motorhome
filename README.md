@@ -31,7 +31,7 @@ O Planet Motorhome é uma plataforma centralizada para entusiastas de motorhomes
 <img alt="React" src="https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB">
 <img alt="Material-UI" src="https://img.shields.io/badge/Material--UI-0081CB?style=for-the-badge&logo=material-ui&logoColor=white">
 <img alt="Express.js" src="https://img.shields.io/badge/Express.js-404D59?style=for-the-badge">
-<img alt="MongoDB" src="https://img.shields.io/badge/MongoDB-47A248?style=for-the-badge&logo=mongodb&logoColor=white">
+<img alt="PostgreSQL" src="https://img.shields.io/badge/PostgreSQL-316192?style=for-the-badge&logo=postgresql&logoColor=white">
 <img alt="Google Maps API" src="https://img.shields.io/badge/Google_Maps_API-4285F4?style=for-the-badge&logo=google-maps&logoColor=white">
 
 ## Estrutura do Projeto
@@ -47,4 +47,3 @@ O Planet Motorhome é uma plataforma centralizada para entusiastas de motorhomes
 [Inclua aqui a licença do seu projeto, se aplicável.]
 
 </div>
-
