@@ -35,15 +35,9 @@ O Planet Motorhome é uma plataforma centralizada para entusiastas de motorhomes
 <img alt="Google Maps API" src="https://img.shields.io/badge/Google_Maps_API-4285F4?style=for-the-badge&logo=google-maps&logoColor=white">
 
 ## Estrutura do Projeto
+- **backend:** Contém a lógica de servidor, controladores, modelos, rotas e serviços.
+- **frontend:** Inclui a interface do usuário, páginas principais, componentes reutilizáveis e recursos gráficos.
 
 [Descreva a estrutura geral do seu projeto, destacando pastas importantes e suas funcionalidades.]
-
-## Contribuição
-
-[Forneça informações sobre como os desenvolvedores podem contribuir para o seu projeto.]
-
-## Licença
-
-[Inclua aqui a licença do seu projeto, se aplicável.]
 
 </div>
