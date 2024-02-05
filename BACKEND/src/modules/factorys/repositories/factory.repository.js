@@ -29,7 +29,7 @@ module.exports = {
   async listAllfactory() {
     try {
       return connection('factory')
-        .select('id', 'name', 'city', 'contact', 'email')
+        .select('id', 'name', 'city', 'contact', 'email', 'avatar')
         .orderBy('id', 'email')
     } catch (err) {
       throw new AppError(err.message)
