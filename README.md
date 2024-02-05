@@ -2,6 +2,8 @@
 
 # Planet Motorhome
 
+![Logo](../FRONTEND/src/assets/logo.png)
+
 [![Facebook](https://img.shields.io/badge/Facebook-1877F2?style=for-the-badge&logo=facebook&logoColor=white)](https://www.facebook.com/seu-usuario)
 [![Instagram](https://img.shields.io/badge/Instagram-E4405F?style=for-the-badge&logo=instagram&logoColor=white)](https://www.instagram.com/seu-usuario/)
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/seu-usuario/)
@@ -18,7 +20,7 @@ O Planet Motorhome é uma plataforma centralizada para entusiastas de motorhomes
 
 ## Como Iniciar o Projeto
 
-1. Clone o repositório: `git clone https://github.com/flpmartins/Planet-Motorhome.git`
+1. Clone o repositório: `git clone https://github.com/seu-usuario/Planet-Motorhome.git`
 2. Instale as dependências: `npm install` ou `yarn install`
 3. Configure as variáveis de ambiente, incluindo as chaves de API do Google.
 4. Inicie o servidor: `npm start` ou `yarn start`
