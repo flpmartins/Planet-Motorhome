@@ -9,6 +9,7 @@ import { useNavigate } from 'react-router-dom'
 import { Container, ActionsButton, ImageFactory } from './styles';
 import { ViewFactoryModal } from '../../shared/components/modal-factory/ViewFactoryModal';
 import { UpdateFactoryModal } from '../../shared/components/modal-factory/UpdateFactoryModal';
+import { useTheme } from 'styled-components';
 
 export const Factorys = () => {
   const navigate = useNavigate();
@@ -17,6 +18,7 @@ export const Factorys = () => {
   const [selectedFactory, setSelectedFactory] = useState(null);
   const [viewModalOpen, setViewModalOpen] = useState(false);
   const [isEditModalOpen, setEditModalOpen] = useState(false);
+  const theme = useTheme()
 
   const handleSearch = useCallback(() => {
     console.log('FACTORIES - handleSearch');
@@ -72,16 +74,13 @@ export const Factorys = () => {
                   <TableCell align="center">
                     <ImageFactory
                       src={
-                        factory.picture
-                          ? `${enviroments.URL_API_PLANETMOTORHOME}/files/${factory.picture}`
-                          : `https://ui-avatars.com/api/?font-size=0.33&background=717339&color=fff&name=${factory?.name}`
+                        factory.avatar
+                          ? `${enviroments.URL_API_PLANETMOTORHOME + '/files/' + factory.avatar}`
+                          : `https://ui-avatars.com/api/?font-size=0.33&background=717339&color=fff&name=${encodeURIComponent(factory.name)}`
                       }
                       style={{
-                        backgroundColor: '#717339',
-                        color: '#fff',
-                        width: '100px',
-                        height: '100px',
-                        borderRadius: '50%',
+                        backgroundColor: theme.background.substring(1, theme.background.length),
+                        color: theme.contrast.substring(1, theme.contrast.length),
                       }}
                     />
                   </TableCell>

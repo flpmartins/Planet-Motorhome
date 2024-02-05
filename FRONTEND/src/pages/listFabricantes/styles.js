@@ -85,7 +85,7 @@ export const ActionsButton = styled.div`
 `;
 
 export const ImageFactory = styled.img`
-  width: 200px;
-  height: 200px;
+  width: 100px;
+  height: 100px;
   border-radius: 50%;
 `;

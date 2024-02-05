@@ -15,15 +15,27 @@ import { getFactory } from '../../api/planet-motorhome-api';
 import { enviroments } from '../../shared/environments';
 import { useNavigate } from 'react-router-dom'
 import { Container, ActionsButton, ImageFactory } from './styles';
+import { useTheme } from 'styled-components';
 import { ViewFactoryModal } from '../../shared/components/modal-factory/ViewFactoryModal';
-
 export const ListFactorys = () => {
   const navigate = useNavigate();
+  const theme = useTheme()
   const [factories, setFactories] = useState([]);
   const [refresh, setRefresh] = useState(false);
   const [selectedFactory, setSelectedFactory] = useState(null);
   const [viewModalOpen, setViewModalOpen] = useState(false);
   const [setEditModalOpen] = useState(false);
+
+  const [picture, setPicture] = useState(() => {
+
+    const appData = JSON.parse(localStorage.getItem(enviroments.APP_NAME));
+
+    if (appData && appData.factory && appData.factory.avatar) {
+      return appData.factory.avatar;
+    }
+
+    return '';
+  });
 
   const handleDetails = useCallback((id, option) => {
     if (option === 4) {
@@ -47,7 +59,6 @@ export const ListFactorys = () => {
     } catch (error) {
     }
   }, []);
-
 
   useEffect(() => {
     getAllFactories();
@@ -75,20 +86,16 @@ export const ListFactorys = () => {
             <TableBody>
               {factories.map((factory) => (
                 <TableRow key={factory.id}>
-
                   <TableCell align="center">
                     <ImageFactory
                       src={
-                        factory.picture
-                          ? `${enviroments.URL_API_PLANETMOTORHOME}/files/${factory.picture}`
-                          : `https://ui-avatars.com/api/?font-size=0.33&background=717339&color=fff&name=${factory?.name}`
+                        factory.avatar
+                          ? `${enviroments.URL_API_PLANETMOTORHOME + '/files/' + factory.avatar}`
+                          : `https://ui-avatars.com/api/?font-size=0.33&background=717339&color=fff&name=${encodeURIComponent(factory.name)}`
                       }
                       style={{
-                        backgroundColor: '#717339',
-                        color: '#fff',
-                        width: '100px',
-                        height: '100px',
-                        borderRadius: '50%',
+                        backgroundColor: theme.background.substring(1, theme.background.length),
+                        color: theme.contrast.substring(1, theme.contrast.length),
                       }}
                     />
                   </TableCell>
@@ -114,6 +121,5 @@ export const ListFactorys = () => {
         />
       </Container>
     </BaseLayout >
-
   );
 };

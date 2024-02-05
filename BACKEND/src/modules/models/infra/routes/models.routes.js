@@ -14,7 +14,7 @@ const { verifyPayloadForCreation } = require('../../middlewares/models.middlewar
 
 const userModelsRoutes = Router()
 
-userModelsRoutes.post('/:id', verifyPayloadForCreation(), addModel)
+userModelsRoutes.post('/', verifyPayloadForCreation(), addModel)
 
 userModelsRoutes.get('/list/:id', listModel)
 

@@ -9,8 +9,7 @@ const factoryRepository = require('../../../factorys/repositories/factory.reposi
 module.exports = {
 
   async addModel(request, response) {
-    const { models, size, year } = request.body;
-    const { id } = request.params;
+    const { models, size, year, factory_id } = request.body;
 
     const createModelService = new CreateModelService(
       modelRepository,
@@ -25,7 +24,7 @@ module.exports = {
           models,
           size,
           year,
-          factory_id: id,
+          factory_id: factory_id,
         },
         currentUser,
       );

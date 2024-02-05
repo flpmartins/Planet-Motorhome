@@ -1,4 +1,3 @@
-// ListToolbar.js
 import React, { useState } from 'react';
 import { useTheme } from 'styled-components';
 import { MdAdd } from 'react-icons/md';
@@ -34,14 +33,14 @@ export const ListToolbar = ({ handleSearch, handleNew }) => {
         style={buttonStyles}
         variant="contained"
         color="primary"
-        onClick={handleNew || handleOpenModal} // Chama handleOpenModal quando o botão é clicado
+        onClick={handleNew || handleOpenModal}
       >
         <MdAdd size={24} style={{ marginRight: '16px' }} />
         Nova Fábrica
       </Button>
       <AddFactoryModal
         open={isAddFactoryModalOpen}
-        handleClose={handleCloseModal} // Passa handleCloseModal como prop onClose
+        handleClose={handleCloseModal}
       />
     </Container>
   );

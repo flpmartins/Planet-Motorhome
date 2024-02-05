@@ -149,11 +149,10 @@ const alterAvatarFactory = async (id, avatar) => {
 
 const createModels = async (params) => {
   try {
-    const result = await api.post('models', params)
-
-    return result.data
+    const result = await api.post('models', params);
+    return result.data;
   } catch (error) {
-    throw new Error(error.message)
+    throw new Error(error.message);
   }
 }
 

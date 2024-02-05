@@ -2,13 +2,14 @@ import styled from 'styled-components';
 
 export const Container = styled.div`
   padding: 20px;
+  background-color: green;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 85vh;
 `;
 
 export const Content = styled.div`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 0 100px;
 `;
 export const Title = styled.h1`
   font-size: 24px;
