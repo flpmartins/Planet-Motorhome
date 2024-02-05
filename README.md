@@ -8,8 +8,6 @@
 [![Instagram](https://img.shields.io/badge/Instagram-E4405F?style=for-the-badge&logo=instagram&logoColor=white)](https://www.instagram.com/seu-usuario/)
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/seu-usuario/)
 
-![Seu Nome GitHub stats](https://github-readme-stats.vercel.app/api?username=seu-usuario&show_icons=true&theme=dark)
-
 ## Sobre o Projeto
 O Planet Motorhome é uma plataforma centralizada para entusiastas de motorhomes, oferecendo informações sobre destinos, acampamentos e eventos, promovendo uma comunidade vibrante.
 
