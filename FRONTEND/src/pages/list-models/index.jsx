@@ -87,7 +87,7 @@ export const ListModelsByUser = () => {
       toolbar={
         <div style={{ display: 'flex', justifyContent: 'end', alignItems: 'center', width: '100%', textAlign: 'center' }}>
           <Button variant="contained" color="primary" onClick={() => handleOpenAddModelModal()} style={{ width: '200px' }}>
-          </Button>
+            Adicionar modelo </Button>
         </div>
       }>
       <br />
