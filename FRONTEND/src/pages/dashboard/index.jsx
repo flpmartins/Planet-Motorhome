@@ -41,14 +41,14 @@ export const Dashboard = () => {
 
               </ImgContainer>
             </Link>
-            <Link to="/factory">
+            <Link to="/list/factory">
               <ImgContainer>
                 <Img src={factoryImage} alt="Factory" />
                 <ImgOverlay />
 
               </ImgContainer>
             </Link>
-            <Link to="/models">
+            <Link to="/models/userId">
               <ImgContainer>
                 <Img src={modelsImage} alt="Models" />
                 <ImgOverlay />

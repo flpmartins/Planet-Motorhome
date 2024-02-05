@@ -77,10 +77,11 @@ export const ActionsButton = styled.div`
       transform: scale(1.1);
     }
 
+
     svg {
       font-size: 18px;
-      color: ${({ theme }) => theme.primary};
     }
+   
   }
 `;
 

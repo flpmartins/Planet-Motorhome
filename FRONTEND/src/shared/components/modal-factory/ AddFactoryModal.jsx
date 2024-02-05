@@ -1,7 +1,11 @@
 import React, { useState } from 'react';
 import { Modal, Box, Typography, TextField, Button } from '@mui/material';
-import { createFactory } from '../../../api/planet-motorhome-api'
+import { createFactory } from '../../../api/planet-motorhome-api';
+import { useToast } from '../../hooks/toast';
+import * as Yup from 'yup';
+
 export const AddFactoryModal = ({ open, handleClose }) => {
+  const { addToast } = useToast();
 
   const [factoryInfo, setFactoryInfo] = useState({
     name: '',
@@ -19,21 +23,46 @@ export const AddFactoryModal = ({ open, handleClose }) => {
 
   const handleAdd = async () => {
     try {
-      const result = await createFactory(factoryInfo)
-      console.log(result)
+      const schema = Yup.object().shape({
+        name: Yup.string().required('O nome é obrigatório'),
+        city: Yup.string().required('A cidade é obrigatória'),
+        contact: Yup.string().required('O contato é obrigatório'),
+        email: Yup.string().email('Digite um e-mail válido').required('O e-mail é obrigatório'),
+      });
+
+      await schema.validate(factoryInfo, { abortEarly: false });
+
+      const result = await createFactory(factoryInfo);
+      console.log(result);
+
+      // Exibindo toast de sucesso
+      addToast({
+        type: 'success',
+        title: 'Fábrica criada com sucesso!',
+      });
+
       setFactoryInfo({
         name: '',
         city: '',
         contact: '',
         email: '',
-        avatar: '',
       });
       handleClose();
     } catch (error) {
-      console.error("Erro ao criar a fábrica:", error.message)
+      // Se houver erro de validação Yup, exibir os erros no formRef
+      if (error instanceof Yup.ValidationError) {
+        error.inner.forEach((err) => {
+          addToast({
+            type: 'error',
+            title: 'Erro de validação',
+            description: err.message,
+          });
+        });
+      } else {
+        console.error("Erro ao criar a fábrica:", error.message);
+      }
     }
   };
-
 
   return (
     <Modal open={open} onClose={handleClose}>

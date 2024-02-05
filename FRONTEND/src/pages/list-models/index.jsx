@@ -2,9 +2,13 @@ import React, { useEffect, useState } from 'react';
 import { TableContainer, Table, TableBody, TableCell, TableHead, TableRow, Typography, Divider } from '@mui/material';
 import { Button } from '../../shared/components/form/button';
 import { useParams } from 'react-router-dom';
-import { listModelByUser, getFactory } from '../../api/planet-motorhome-api';
+import { listModelByUser, getFactory, deleteModel } from '../../api/planet-motorhome-api';
 import { BaseLayout } from '../../shared/layouts/baseLayouts';
 import { AddModelModal } from './../../shared/components/modal-models/addModelModal';
+import { MdDelete } from 'react-icons/md';
+import { useToast } from '../../shared/hooks/toast';
+import { Modal, Box, Button as MuiButton, Typography as MuiTypography } from '@mui/material';
+import { MdAdd } from 'react-icons/md';
 
 export const ListModelsByUser = () => {
   const { userId } = useParams();
@@ -12,6 +16,9 @@ export const ListModelsByUser = () => {
   const [isAddModelModalOpen, setAddModelModalOpen] = useState(false);
   const [selectedFactory, setSelectedFactory] = useState(null);
   const [factories, setFactories] = useState([]);
+  const [selectedModel, setSelectedModel] = useState(null);
+  const [isDeleteConfirmationOpen, setDeleteConfirmationOpen] = useState(false);
+  const { addToast } = useToast();
 
   useEffect(() => {
     const fetchModels = async () => {
@@ -48,14 +55,38 @@ export const ListModelsByUser = () => {
     setAddModelModalOpen(false);
   };
 
+  const handleDeleteConfirmation = (model) => {
+    setSelectedModel(model);
+    setDeleteConfirmationOpen(true);
+  };
+
+  const handleDeleteModel = async () => {
+    try {
+      await deleteModel(selectedModel.id);
+      const updatedModels = models.filter((model) => model.id !== selectedModel.id);
+      setModels(updatedModels);
+      addToast({
+        type: 'success',
+        title: 'Modelo excluído com sucesso!',
+      });
+    } catch (error) {
+      console.error('Erro ao excluir o modelo:', error);
+      addToast({
+        type: 'error',
+        title: 'Erro ao excluir o modelo',
+        description: 'Ocorreu um erro ao tentar excluir o modelo.',
+      });
+    } finally {
+      setDeleteConfirmationOpen(false);
+    }
+  };
+
   return (
     <BaseLayout
       title="Lista de Fábricas"
       toolbar={
-        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', width: '100%' }}>
-          <Typography variant='h4' style={{ color: '#717339', margin: '0' }}>MEUS MODELOS</Typography>
+        <div style={{ display: 'flex', justifyContent: 'end', alignItems: 'center', width: '100%', textAlign: 'center' }}>
           <Button variant="contained" color="primary" onClick={() => handleOpenAddModelModal()} style={{ width: '200px' }}>
-            Adicionar Modelo
           </Button>
         </div>
       }>
@@ -70,6 +101,7 @@ export const ListModelsByUser = () => {
               <TableCell align="center" style={{ color: '#262626', fontWeight: 'bold' }}>Tamanho</TableCell>
               <TableCell align="center" style={{ color: '#262626', fontWeight: 'bold' }}>Ano</TableCell>
               <TableCell align="center" style={{ color: '#262626', fontWeight: 'bold' }}>ID FABRICANTE</TableCell>
+              <TableCell align="center" style={{ color: '#262626', fontWeight: 'bold' }}>Ações</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
@@ -79,6 +111,11 @@ export const ListModelsByUser = () => {
                 <TableCell align="center">{model.size}</TableCell>
                 <TableCell align="center">{model.year}</TableCell>
                 <TableCell align="center">{model.factory_id}</TableCell>
+                <TableCell align="center">
+                  <MuiButton onClick={() => handleDeleteConfirmation(model)} style={{ color: 'red' }}>
+                    <MdDelete />
+                  </MuiButton>
+                </TableCell>
               </TableRow>
             ))}
           </TableBody>
@@ -91,6 +128,64 @@ export const ListModelsByUser = () => {
         selectedFactory={selectedFactory}
         factories={factories}
       />
+
+      <DeleteConfirmationModal
+        open={isDeleteConfirmationOpen}
+        handleClose={() => setDeleteConfirmationOpen(false)}
+        handleConfirm={handleDeleteModel}
+        title="Confirmação de Exclusão"
+        message="Tem certeza que deseja excluir este modelo?"
+      />
     </BaseLayout>
+  );
+};
+
+const DeleteConfirmationModal = ({ open, handleClose, handleConfirm, title, message }) => {
+  return (
+    <Modal open={open} onClose={handleClose}>
+      <Box
+        sx={{
+          position: 'absolute',
+          padding: '25px',
+          top: '50%',
+          left: '50%',
+          transform: 'translate(-50%, -50%)',
+          bgcolor: 'white',
+          p: 4,
+        }}
+      >
+        <MuiTypography variant="h5" mb={2}>
+          {title}
+        </MuiTypography>
+        <MuiTypography mb={2}>{message}</MuiTypography>
+        <MuiButton
+          variant="contained"
+          onClick={handleConfirm}
+          sx={{
+            background: '#717339',
+            width: '100%',
+            marginBottom: '20px',
+            '&:hover': {
+              background: '#717339',
+            },
+          }}
+        >
+          Confirmar
+        </MuiButton>
+        <MuiButton
+          variant="contained"
+          onClick={handleClose}
+          sx={{
+            background: '#c53030',
+            width: '100%',
+            '&:hover': {
+              background: '#c53030',
+            },
+          }}
+        >
+          Cancelar
+        </MuiButton>
+      </Box>
+    </Modal>
   );
 };

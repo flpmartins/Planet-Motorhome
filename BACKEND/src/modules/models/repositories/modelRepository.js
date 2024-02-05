@@ -43,7 +43,7 @@ module.exports = {
     }
   },
 
-  async deleteFactory(id) {
+  async deleteModel(id) {
     try {
       return connection('models').where({ id }).del()
     } catch (err) {

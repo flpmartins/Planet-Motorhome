@@ -2,7 +2,7 @@ const CreateModelService = require('../../services/CreateModelService')
 const ListModelsService = require('../../services/ListAllModelsService')
 const ListModelService = require('../../services/ListModelService')
 const ListAllModelsByUserService = require('../../services/ListAllModelsServiceByUser')
-
+const DeleteModelService = require('../../services/DeleteModelService')
 const modelRepository = require("../../repositories/modelRepository")
 const factoryRepository = require('../../../factorys/repositories/factory.repository')
 
@@ -76,11 +76,18 @@ module.exports = {
     }
   },
 
-  async alterModel(require, response) {
+  async alterModel(request, response) {
     return response.json({ message: 'alter' })
   },
 
-  async deleteModel(require, response) {
-    return response.json({ message: 'delete' })
+  async deleteModel(request, response) {
+
+    const { id } = request.params
+
+    const deleteModel = new DeleteModelService(modelRepository)
+
+    await deleteModel.execute(id)
+
+    return response.json({ message: 'deleted model' })
   },
 }

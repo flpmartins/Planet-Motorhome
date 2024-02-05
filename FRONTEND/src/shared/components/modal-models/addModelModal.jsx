@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { Modal, Box, Typography, TextField, Button, Select, MenuItem, FormControl, InputLabel } from '@mui/material';
 import { createModels, getFactoryByUser } from '../../../api/planet-motorhome-api';
+import { useToast } from '../../hooks/toast';
+import * as Yup from 'yup';
 
 export const AddModelModal = ({ open, handleClose }) => {
   const [factories, setFactories] = useState([]);
@@ -11,6 +13,8 @@ export const AddModelModal = ({ open, handleClose }) => {
     size: '',
     year: '',
   });
+
+  const { addToast } = useToast();
 
   useEffect(() => {
     const fetchFactories = async () => {
@@ -45,15 +49,27 @@ export const AddModelModal = ({ open, handleClose }) => {
 
   const handleAddModel = async () => {
     try {
-      // Convertendo factory_id para string e adicionando entre aspas
+      const schema = Yup.object().shape({
+        models: Yup.string().required('O modelo é obrigatório'),
+        size: Yup.string().required('O tamanho é obrigatório'),
+        year: Yup.string().required('O ano é obrigatório'),
+      });
+
+      await schema.validate(modelInfo, { abortEarly: false });
+
       const modelData = {
         ...modelInfo,
         factory_id: `${String(modelInfo.factory_id)}`,
       };
 
-      console.log('Adding Model:', modelData);
-
       await createModels(modelData);
+
+      // Exibindo toast de sucesso
+      addToast({
+        type: 'success',
+        title: 'Modelo criado com sucesso!',
+      });
+
       setModelInfo({
         factory_id: '',
         models: '',
@@ -62,7 +78,18 @@ export const AddModelModal = ({ open, handleClose }) => {
       });
       handleClose();
     } catch (error) {
-      console.error("Erro ao criar o modelo:", error.message);
+      // Se houver erro de validação Yup, exibir os erros no formRef
+      if (error instanceof Yup.ValidationError) {
+        error.inner.forEach((err) => {
+          addToast({
+            type: 'error',
+            title: 'Erro de validação',
+            description: err.message,
+          });
+        });
+      } else {
+        console.error("Erro ao criar o modelo:", error.message);
+      }
     }
   };
 

@@ -20,7 +20,7 @@ userModelsRoutes.get('/list/:id', listModel)
 
 userModelsRoutes.put('/alter', alterModel)
 
-userModelsRoutes.delete('/delete', deleteModel)
+userModelsRoutes.delete('/delete/:id', deleteModel)
 
 userModelsRoutes.get('/listAll/:id', listModels)
 

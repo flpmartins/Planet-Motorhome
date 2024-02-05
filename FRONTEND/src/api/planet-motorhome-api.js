@@ -147,6 +147,16 @@ const alterAvatarFactory = async (id, avatar) => {
   }
 }
 
+const deleteFactory = async (id, params) => {
+  try {
+    const result = api.delete(`factory/delete/${id}`, params)
+
+    return result
+  } catch (error) {
+    throw new Error(error.message)
+  }
+}
+
 const createModels = async (params) => {
   try {
     const result = await api.post('models', params);
@@ -185,6 +195,17 @@ const listModelByUser = async (userId) => {
     throw new Error(error.message)
   }
 }
+const deleteModel = async (id, params) => {
+  try {
+    const result = api.delete(`Models/delete/${id}`, params)
+
+    return result
+  } catch (error) {
+    throw new Error(error.message)
+  }
+}
+
+
 
 export {
   signInLoign,
@@ -203,5 +224,7 @@ export {
   createModels,
   listAllModels,
   listModel,
-  listModelByUser
+  listModelByUser,
+  deleteModel,
+  deleteFactory
 }

@@ -140,7 +140,6 @@ export const UpdateFactoryModal = ({ open, handleClose, factory, handleUpdateFac
           </IconButton>
         </Avatar>
 
-        {/* Seletor de arquivo escondido */}
         <Input
           type="file"
           id="avatarInput"
@@ -193,7 +192,6 @@ export const UpdateFactoryModal = ({ open, handleClose, factory, handleUpdateFac
           mb={2}
         />
         <InputLabel sx={{ marginBottom: '10px', display: 'block' }}>Avatar</InputLabel>
-        {/* O seletor de arquivo agora está escondido e é ativado pelo clique no avatar */}
         <Button
           variant="contained"
           onClick={handleUpdate}

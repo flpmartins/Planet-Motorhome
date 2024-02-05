@@ -3,13 +3,16 @@ import { TableContainer, Table, TableBody, TableCell, TableHead, TableRow } from
 import { FiEdit, FiEye } from 'react-icons/fi';
 import { BaseLayout } from '../../shared/layouts/baseLayouts';
 import { ListToolbar } from '../../shared/components/ListToolbar';
-import { getFactoryByUser } from '../../api/planet-motorhome-api';
+import { getFactoryByUser, deleteFactory } from '../../api/planet-motorhome-api';
 import { enviroments } from '../../shared/environments';
-import { useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom';
 import { Container, ActionsButton, ImageFactory } from './styles';
 import { ViewFactoryModal } from '../../shared/components/modal-factory/ViewFactoryModal';
 import { UpdateFactoryModal } from '../../shared/components/modal-factory/UpdateFactoryModal';
 import { useTheme } from 'styled-components';
+import { MdDelete } from 'react-icons/md';
+import { useToast } from '../../shared/hooks/toast';
+import { Modal, Box, Typography, Button } from '@mui/material';
 
 export const Factorys = () => {
   const navigate = useNavigate();
@@ -18,7 +21,9 @@ export const Factorys = () => {
   const [selectedFactory, setSelectedFactory] = useState(null);
   const [viewModalOpen, setViewModalOpen] = useState(false);
   const [isEditModalOpen, setEditModalOpen] = useState(false);
-  const theme = useTheme()
+  const [isDeleteConfirmationOpen, setDeleteConfirmationOpen] = useState(false);
+  const theme = useTheme();
+  const { addToast } = useToast();
 
   const handleSearch = useCallback(() => {
     console.log('FACTORIES - handleSearch');
@@ -51,6 +56,81 @@ export const Factorys = () => {
   useEffect(() => {
     getAllFactories();
   }, [getAllFactories, refresh]);
+
+  const handleDeleteConfirmation = (id) => {
+    setSelectedFactory(id);
+    setDeleteConfirmationOpen(true);
+  };
+
+  const handleDeleteFactory = async () => {
+    try {
+      await deleteFactory(selectedFactory);
+      getAllFactories();
+      addToast({
+        type: 'success',
+        title: 'Fábrica excluída com sucesso!',
+      });
+    } catch (error) {
+      console.error('Erro ao excluir a fábrica:', error);
+      addToast({
+        type: 'error',
+        title: 'Erro ao excluir a fábrica',
+        description: 'Ocorreu um erro ao tentar excluir a fábrica.',
+      });
+    } finally {
+      setDeleteConfirmationOpen(false);
+    }
+  };
+
+  const ConfirmationModal = ({ open, handleClose, handleConfirm, title, message }) => {
+    return (
+      <Modal open={open} onClose={handleClose}>
+        <Box
+          sx={{
+            position: 'absolute',
+            padding: '25px',
+            top: '50%',
+            left: '50%',
+            transform: 'translate(-50%, -50%)',
+            bgcolor: 'white',
+            p: 4,
+          }}
+        >
+          <Typography variant="h5" mb={2}>
+            {title}
+          </Typography>
+          <Typography mb={2}>{message}</Typography>
+          <Button
+            variant="contained"
+            onClick={handleConfirm}
+            sx={{
+              background: '#717339',
+              width: '100%',
+              marginBottom: '20px',
+              '&:hover': {
+                background: '#717339',
+              },
+            }}
+          >
+            Confirmar
+          </Button>
+          <Button
+            variant="contained"
+            onClick={handleClose}
+            sx={{
+              background: '#c53030',
+              width: '100%',
+              '&:hover': {
+                background: '#c53030',
+              },
+            }}
+          >
+            Cancelar
+          </Button>
+        </Box>
+      </Modal>
+    );
+  };
 
   return (
     <BaseLayout
@@ -94,6 +174,9 @@ export const Factorys = () => {
                       <button type="button" onClick={() => handleDetails(factory.id, 4)}>
                         <FiEye />
                       </button>
+                      <button type="button" className="delete-button" onClick={() => handleDeleteConfirmation(factory.id)} style={{ color: "red" }}>
+                        <MdDelete />
+                      </button>
                     </ActionsButton>
                   </TableCell>
                 </TableRow>
@@ -115,8 +198,15 @@ export const Factorys = () => {
             setEditModalOpen(false);
           }}
         />
+
+        <ConfirmationModal
+          open={isDeleteConfirmationOpen}
+          handleClose={() => setDeleteConfirmationOpen(false)}
+          handleConfirm={handleDeleteFactory}
+          title="Confirmação de Exclusão"
+          message="Tem certeza que deseja excluir esta fábrica?"
+        />
       </Container>
     </BaseLayout>
-
   );
 };
