@@ -38,6 +38,4 @@ O Planet Motorhome é uma plataforma centralizada para entusiastas de motorhomes
 - **backend:** Contém a lógica de servidor, controladores, modelos, rotas e serviços.
 - **frontend:** Inclui a interface do usuário, páginas principais, componentes reutilizáveis e recursos gráficos.
 
-[Descreva a estrutura geral do seu projeto, destacando pastas importantes e suas funcionalidades.]
-
 </div>
